@@ -37,11 +37,11 @@ variable {X : Type*} [TopologicalSpace X]
 
 lemma intersection_closed {ι : Type*} {A : ι → Set X}
   (hA : ∀ i, IsClosed (A i)) : IsClosed (⋂ i, A i) := by
-  constructor 
-  rw [Set.compl_iInter] 
-  apply isOpen_iUnion 
-  intro i 
-  exact (hA i).isOpen_compl 
+  constructor
+  rw [Set.compl_iInter]
+  apply isOpen_iUnion
+  intro i
+  exact (hA i).isOpen_compl
 
 set_option linter.unusedSectionVars false
 lemma null_intersection_complement : A ∩ Aᶜ = ∅ := by
@@ -52,18 +52,18 @@ lemma null_intersection_complement : A ∩ Aᶜ = ∅ := by
     have hAc := hx.2
     contradiction
   · intro hp
-    cases hp 
+    cases hp
 
 
 
 lemma Shravas_lemma {α : Type*} (t : Set α) : (tᶜ)ᶜ = t := by
   ext y
   constructor
-  · 
+  ·
     intro h
     by_contra hn
     exact h hn
-  · 
+  ·
     intro h hn
     exact hn h
 
@@ -71,20 +71,44 @@ lemma Shravas_lemma {α : Type*} (t : Set α) : (tᶜ)ᶜ = t := by
 
 lemma difference_of_sets_closure :
   closure A \ closure B ⊆ closure (A \ B) := by
-  intro x hx  
+  intro x hx
   rcases hx with ⟨hxA, hxB⟩
-  rw [mem_closure_iff] at hxA 
-  rw [mem_closure_iff] at hxB 
-  push_neg at hxB 
-  obtain ⟨V, hV, hxV, hVB⟩ := hxB 
-  rw [mem_closure_iff]  
-  intro U hU hxU  
-                 
-  have hUV : IsOpen (U ∩ V) := hU.inter hV 
-  have hxUV : x ∈ U ∩ V := ⟨hxU, hxV⟩ 
+  rw [mem_closure_iff] at hxA
+  rw [mem_closure_iff] at hxB
+  push_neg at hxB
+  obtain ⟨V, hV, hxV, hVB⟩ := hxB
+  rw [mem_closure_iff]
+  intro U hU hxU
+
+  have hUV : IsOpen (U ∩ V) := hU.inter hV
+  have hxUV : x ∈ U ∩ V := ⟨hxU, hxV⟩
   obtain ⟨y, ⟨hyU, hyV⟩, hyA⟩ := hxA (U ∩ V) hUV hxUV
-  have hynotB : y ∉ B := by  
-    intro hyB 
-    have : y ∈ V ∩ B := ⟨hyV, hyB⟩  
-    simp [hVB] at this  
-  exact ⟨y, hyU, hyA, hynotB⟩   
+  have hynotB : y ∉ B := by
+    intro hyB
+    have : y ∈ V ∩ B := ⟨hyV, hyB⟩
+    simp [hVB] at this
+  exact ⟨y, hyU, hyA, hynotB⟩
+
+
+
+lemma Shravas_intersection_of_closed_is_closed {X : Type*} [TopologicalSpace X] (C : Set (Set X)) :
+  (∀ s ∈ C, IsClosed s) → IsClosed (⋂₀ C) := by
+    intro h
+    apply IsClosed.mk
+    have intlemma : (⋂₀ C)ᶜ = ⋃₀ (Set.compl '' C) := by
+      ext x
+      constructor
+      · intro hx
+        have ⟨s, hs, hxs⟩ : ∃ s ∈ C, x ∉ s := by
+          by_contra H
+          apply hx
+          intro s hs
+          by_contra hxs
+          exact H ⟨s, hs, hxs⟩
+        exact ⟨sᶜ, ⟨s, hs, rfl⟩, hxs⟩
+      · rintro ⟨_, ⟨s, hs, rfl⟩, hx⟩ habs
+        exact hx (habs s hs)
+    rw [intlemma]
+    apply TopologicalSpace.isOpen_sUnion
+    rintro _ ⟨s, hs, rfl⟩
+    exact (h s hs).isOpen_compl
