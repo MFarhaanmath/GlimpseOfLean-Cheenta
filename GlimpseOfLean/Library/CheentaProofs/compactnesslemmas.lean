@@ -30,7 +30,10 @@ lemma closed_compact
   have hU_cover : ∀ x : X, x ∈ ⋃ j, U j := by
     intro x
     by_cases hx : x ∈ A
-    · have hxcover : x ∈ (⋃ i, hopen i) := by
+    · have hxcover : x ∈ U i, hopen i := by
         exact hAcover hx
+      rcases mem_iUnion.mp hxcover with ⟨i, hi⟩
+      have : x ∈ U (some i) := by
+        simpa [U] using hi
     -- THIS LEAN LEMMA IS UNDER CONSTRUCTION. HELP IF YOU CAN,
     -- BUT PLEASE DO NOT DELETE OR BACKSPACE ANYTHING.
