@@ -16,6 +16,7 @@ lemma closed_compact
   intro 𝒜 hopen hcover
   intro hAcover
   have hAc_open : IsOpen Aᶜ := hA.isOpen_compl
+  -- Extend the cover of A to a cover of X by throwing in Aᶜ
   let U : Option 𝒜 → Set X :=
   fun j =>
     match j with
@@ -39,8 +40,28 @@ lemma closed_compact
     · have hmem : x ∈ U none := by
         simpa [U] using hx
       exact mem_iUnion.mpr ⟨none, hmem⟩
+  -- Apply compactness of X to get a finite subcover s : Finset (Option 𝒜)
   have hcompact := isCompact_univ (α := X)
   rw [isCompact_iff_finite_subcover] at hcompact
   obtain ⟨s, hs⟩ := hcompact U hU_open (by simp [hU_cover])
+  -- Strip the `none` option out; only the `some` indices cover A
   refine ⟨s.filterMap id, ?_⟩
-  sorry
+  intro x hx
+  -- x ∈ A, so x ∉ Aᶜ, so the `none` set didn't cover x
+  -- therefore x must be in some U (some i) for i ∈ s
+  have hxU := hs (Set.mem_univ x)
+  simp only [Set.mem_iUnion, Finset.mem_coe] at hxU
+  obtain ⟨j, hjs, hjx⟩ := hxU
+  -- j can't be none because x ∈ A
+  cases j with
+  | none =>
+      -- U none = Aᶜ, but x ∈ A — contradiction
+      simp [U] at hjx
+      exact hjx hx
+  | some i =>
+      -- j = some i, so i ∈ s.filterMap id and x ∈ ↑i
+      simp only [Set.mem_iUnion, Finset.mem_coe]
+      refine ⟨i, ?_, ?_⟩
+      · simp only [Finset.mem_filterMap, Function.comp]
+        exact ⟨some i, hjs, rfl⟩
+      · simpa [U] using hjx
