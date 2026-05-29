@@ -1,0 +1,1 @@
+{"decls":{},"directImports":[["Mathlib.Topology.Basic",false,false,false]],"module":"startfile","references":{"{\"c\":{\"m\":\"Mathlib.Topology.Defs.Basic\",\"n\":\"IsOpen\"}}":{"definition":null,"usages":[[5,7,5,13,"_check"]]},"{\"c\":{\"m\":\"Mathlib.Topology.Defs.Basic\",\"n\":\"TopologicalSpace\"}}":{"definition":null,"usages":[[4,7,4,23,"_check"]]}},"version":5}
