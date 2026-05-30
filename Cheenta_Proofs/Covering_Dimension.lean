@@ -4,7 +4,6 @@ Authors : Adhiraj Anand, Niranjan Rao, Parum Sarda, Shravas Matta, Shreesh Nayak
 -/
 module
 
-
 public import Mathlib.Data.Option.Basic
 public import Mathlib.Topology.Separation.Regular
 
@@ -19,4 +18,4 @@ structure OpenCover(X : Type v) [TopologicalSpace X] where
   α : Type*
   sets : α → Set X
   isOpen_sets : ∀ a, IsOpen (sets a)
-  covers_univ : (∪ a, sets a = Set.univ)
+  covers_univ : (⋃ a, sets a = Set.univ)
