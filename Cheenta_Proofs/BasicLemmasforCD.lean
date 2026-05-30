@@ -21,7 +21,9 @@ def Refines
     {κ : Type*}
     (v : κ → Set X)
     (u : ι → Set X) : Prop :=
-  ∀ k, ∃ i, v k ⊆ u i
+
+  IsOpenCover v ∧
+  (∀ k, ∃ i, v k ⊆ u i)
 
 
 noncomputable def multiplicity
@@ -73,27 +75,19 @@ lemma trivialCover_open :
   · ext x
     simp [trivialCover]
 
-omit [TopologicalSpace X]
-lemma trivial_refines
-    {ι : Type v}
-    (u : ι → Set X) :
-    Refines u (trivialCover : Unit → Set X) := by
-
-  intro i
-  refine ⟨(), ?_⟩
-
-  intro x hx
-  trivial
-
-omit [TopologicalSpace X]
 lemma refines_refl
   {ι : Type v}
-  (u : ι → Set X) :
+  {u : ι → Set X}
+  (hu : IsOpenCover u) :
   Refines u u := by
-  intro i
-  exact ⟨i, by intro x hx; exact hx⟩
 
-omit [TopologicalSpace X]
+  constructor
+
+  · exact hu
+
+  · intro i
+    refine ⟨i, subset_rfl⟩
+
 lemma refines_trans
     {ι : Type v}
     {κ : Type*}
@@ -105,12 +99,19 @@ lemma refines_trans
     (h₂ : Refines v u) :
     Refines w u := by
 
-  intro s
-  rcases h₁ s with ⟨k, hkv⟩
-  rcases h₂ k with ⟨i, hui⟩
+  rcases h₁ with ⟨hw, h₁'⟩
+  rcases h₂ with ⟨hv, h₂'⟩
 
-  refine ⟨i, ?_⟩
-  exact Set.Subset.trans hkv hui
+  constructor
+
+  · exact hw
+
+  · intro s
+
+    rcases h₁' s with ⟨k, hkv⟩
+    rcases h₂' k with ⟨i, hui⟩
+
+    refine ⟨i, Set.Subset.trans hkv hui⟩
 
 omit [TopologicalSpace X]
 lemma trivialCover_order :
