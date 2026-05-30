@@ -8,7 +8,6 @@ universe u v
 
 variable {X : Type u} [TopologicalSpace X]
 
-
 def IsOpenCover
     {ι : Type v}
     (u : ι → Set X) : Prop := -- Family of sets definition
