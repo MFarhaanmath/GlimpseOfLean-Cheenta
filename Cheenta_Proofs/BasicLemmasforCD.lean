@@ -11,9 +11,10 @@ variable {X : Type u} [TopologicalSpace X]
 
 def IsOpenCover
     {ι : Type v}
-    (u : ι → Set X) : Prop :=
-  (∀ i, IsOpen (u i)) ∧
-  (⋃ i, u i) = Set.univ
+    (u : ι → Set X) : Prop := -- Family of sets definition
+-- using index i to U_i function.
+  (∀ i, IsOpen (u i)) ∧ -- Every U_i is open.
+  (⋃ i, u i) = Set.univ -- Union of all equals whole X
 
 
 def Refines
@@ -21,7 +22,8 @@ def Refines
     {κ : Type*}
     (v : κ → Set X)
     (u : ι → Set X) : Prop :=
-
+-- This has to be explained properly. It does cover entire set.
+-- But in this case every refinement is automatically an open cover.
   IsOpenCover v ∧
   (∀ k, ∃ i, v k ⊆ u i)
 
@@ -34,7 +36,6 @@ noncomputable def multiplicity
 by
   classical
   exact Fintype.card { i : ι // x ∈ u i }
-
 
 def HasOrderLE
     {ι : Type v}
