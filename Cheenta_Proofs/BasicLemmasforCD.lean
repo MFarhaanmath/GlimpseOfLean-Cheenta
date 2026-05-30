@@ -22,10 +22,9 @@ def Refines
     {κ : Type*}
     (v : κ → Set X)
     (u : ι → Set X) : Prop :=
+  ∀ k, ∃ i, v k ⊆ u i
 -- This has to be explained properly. It does cover entire set.
 -- But in this case every refinement is automatically an open cover.
-  IsOpenCover v ∧
-  (∀ k, ∃ i, v k ⊆ u i)
 
 
 noncomputable def multiplicity
@@ -76,19 +75,15 @@ lemma trivialCover_open :
   · ext x
     simp [trivialCover]
 
+omit [TopologicalSpace X]
 lemma refines_refl
   {ι : Type v}
-  {u : ι → Set X}
-  (hu : IsOpenCover u) :
+  (u : ι → Set X) :
   Refines u u := by
+  intro i
+  exact ⟨i, subset_rfl⟩
 
-  constructor
-
-  · exact hu
-
-  · intro i
-    refine ⟨i, subset_rfl⟩
-
+omit [TopologicalSpace X]
 lemma refines_trans
     {ι : Type v}
     {κ : Type*}
@@ -100,19 +95,14 @@ lemma refines_trans
     (h₂ : Refines v u) :
     Refines w u := by
 
-  rcases h₁ with ⟨hw, h₁'⟩
-  rcases h₂ with ⟨hv, h₂'⟩
+  intro s
 
-  constructor
+  rcases h₁ s with ⟨k, hkv⟩
+  rcases h₂ k with ⟨i, hui⟩
 
-  · exact hw
+  refine ⟨i, ?_⟩
 
-  · intro s
-
-    rcases h₁' s with ⟨k, hkv⟩
-    rcases h₂' k with ⟨i, hui⟩
-
-    refine ⟨i, Set.Subset.trans hkv hui⟩
+  exact Set.Subset.trans hkv hui
 
 omit [TopologicalSpace X]
 lemma trivialCover_order :
