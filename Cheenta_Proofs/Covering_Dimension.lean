@@ -1,6 +1,6 @@
 /-
 Copyright (c) 2026 Cheenta Lean Project. All rights reserved.
-Authors : ...
+Authors : Adhiraj Anand, Niranjan Rao, Parum Sarda, Shravas Matta, Shreesh Nayak, Shreya Iyer
 -/
 module
 
@@ -20,4 +20,3 @@ structure OpenCover(X : Type v) [TopologicalSpace X] where
   sets : α → Set X
   isOpen_sets : ∀ a, IsOpen (sets a)
   covers_univ : (∪ a, sets a = Set.univ)
-
