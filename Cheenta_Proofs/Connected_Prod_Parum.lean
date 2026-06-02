@@ -7,7 +7,13 @@ theorem sUnion_connected_of_nonempty_intersection
     (hconn : ∀ s ∈ S, IsConnected s)
     (hint : (⋂₀ S).Nonempty) :
     IsConnected (⋃₀ S) := by
-  sorry
+  obtain ⟨x, hx⟩ := hint
+  constructor
+  · obtain ⟨s, hs⟩ := hS
+    exact ⟨x, s, hs, hx s hs⟩
+  · apply isPreconnected_sUnion x
+    · exact fun s hs => hx s hs
+    · exact fun s hs => (hconn s hs).isPreconnected
 
 theorem connected_prod {X₁ X₂ : Type*} [TopologicalSpace X₁] [TopologicalSpace X₂]
     (hX₁ : IsConnected (Set.univ : Set X₁))
