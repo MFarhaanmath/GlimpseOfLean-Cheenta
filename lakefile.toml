@@ -12,3 +12,6 @@ rev = "v4.27.0"
 
 [[lean_lib]]
 name = "startfile"
+
+[[lean_lib]]
+name = "Cheenta_Proofs"

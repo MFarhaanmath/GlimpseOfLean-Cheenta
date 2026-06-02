@@ -2,10 +2,10 @@
 Copyright (c) 2026 Cheenta Lean Project. All rights reserved.
 Authors : Adhiraj Anand, Niranjan Rao, Parum Sarda, Shravas Matta, Shreesh Nayak, Shreya Iyer
 -/
-module
+
+import Mathlib.Data.Option.Basic
+import Mathlib.Topology.Separation.Regular
 import Cheenta_Proofs.BasicLemmasforCD
-public import Mathlib.Data.Option.Basic
-public import Mathlib.Topology.Separation.Regular
 
 public section
 open Set Filter Function
