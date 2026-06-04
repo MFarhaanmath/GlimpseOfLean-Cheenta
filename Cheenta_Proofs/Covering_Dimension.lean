@@ -7,8 +7,6 @@ Copyright (c) 2026 Cheenta Lean Project. All rights reserved.
 Authors : Adhiraj Anand, Niranjan Rao, Parum Sarda, Shravas Matta, Shreesh Nayak, Shreya Iyer
 -/
 
-module Cheenta_Proofs.Covering_Dimension
-
 public section
 open Set Filter Function
 
@@ -19,7 +17,9 @@ universe u v w
 variable {X : Type u} [TopologicalSpace X]
 
 def Covering_Dimension (n : ℕ) : Prop :=
-  ∀ {ι : Type v} [Fintype ι] {u : ι → Set X},
+  ∀ (ι : Type v) [Fintype ι] (u : ι → Set X),
     IsOpenCover u →
-    ∃ (k : Type*) (_ : Fintype k) (v : k → Set X),
-      TsOpenCover v ∧ ...
+    ∃ (κ : Type*) (_ : Fintype κ) (v : κ → Set X),
+      IsOpenCover v ∧
+      Refines v u ∧
+      HasOrderLE v n

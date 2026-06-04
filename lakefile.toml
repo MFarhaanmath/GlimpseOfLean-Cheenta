@@ -11,9 +11,6 @@ git = "https://github.com/leanprover-community/mathlib4.git"
 rev = "v4.27.0"
 
 [[lean_lib]]
-name = "Cheenta_Proofs"
-
-[[lean_lib]]
 name = "startfile"
 
 [[lean_lib]]
