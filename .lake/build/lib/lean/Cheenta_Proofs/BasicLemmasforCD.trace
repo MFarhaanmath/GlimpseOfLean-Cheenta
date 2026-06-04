@@ -1,8 +1,8 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["df9b685f29e1137c.olean"],
-  "i": "015e835764c49865.ilean",
+ {"o": ["25b19a74a4832bb5.olean"],
+  "i": "549a62eb9d82fce0.ilean",
   "c": "abfe7c8c4a44d2ba.c"},
  "log":
  [{"message":
@@ -32,9 +32,9 @@
   ["Lean 4.27.0, commit db93fe1608548721853390a10cd40580fe7d22ae",
    "9a2be90fd35343e5"],
   ["C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\Cheenta_Proofs\\BasicLemmasforCD.lean",
-   "7dff7329dad79d3e"],
+   "d1bec2229a964898"],
   ["options",
    [["-Dpp.unicode.fun=true", "9b94070140457fab"],
     ["-DautoImplicit=true", "ce2576f7641d928a"]]],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "38d58aea66933338"}
+ "depHash": "7ea6801ef0d69177"}

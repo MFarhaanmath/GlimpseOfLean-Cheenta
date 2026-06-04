@@ -113,12 +113,3 @@ lemma trivialCover_order :
   classical
 
   simp [trivialCover]
-
-
-def Covering_Dimension (n : ℕ) : Prop :=
-  ∀ (ι : Type v) [Fintype ι] (u : ι → Set X),
-    IsOpenCover u →
-    ∃ (κ : Type*) (_ : Fintype κ) (v : κ → Set X),
-      IsOpenCover v ∧
-      Refines v u ∧
-      HasOrderLE v n
