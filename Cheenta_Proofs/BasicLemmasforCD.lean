@@ -41,24 +41,6 @@ def HasOrderLE
   ∀ x : X, multiplicity u x ≤ n + 1
 
 
-def CoveringDimensionLE
-    (n : ℕ) : Prop :=
-
-  ∀ (ι : Type v)
-    (_ : Fintype ι)
-    (u : ι → Set X),
-
-    IsOpenCover u →
-
-    ∃ (κ : Type*)
-      (_ : Fintype κ)
-      (v : κ → Set X),
-
-      IsOpenCover v ∧
-      Refines v u ∧
-      HasOrderLE v n
-
-
 def trivialCover : Unit → Set X :=
   fun _ => Set.univ
 

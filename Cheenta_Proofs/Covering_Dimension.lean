@@ -28,6 +28,6 @@ theorem subspaceOfDimension
     {Y : Set X}
     (hY : IsClosed Y)
     {n : ℕ}
-    (hdim : CoveringDimensionLE (X := X) n) :
-    CoveringDimensionLE (X := ↥Y) n := by
-  sorry
+    (hdim : Covering_Dimension (X := X) n) :
+    Covering_Dimension (X := ↥Y) n := by
+  unfold Covering_Dimension
