@@ -15,7 +15,6 @@ def IsOpenCover
   (∀ i, IsOpen (u i)) ∧ -- Every U_i is open.
   (⋃ i, u i) = Set.univ -- Union of all equals whole X
 
-
 def Refines
     {ι : Type v}
     {κ : Type*}
@@ -24,7 +23,6 @@ def Refines
   ∀ k, ∃ i, v k ⊆ u i
 -- This has to be explained properly. It does cover entire set.
 -- But in this case every refinement is automatically an open cover.
-
 
 noncomputable def multiplicity
   {ι : Type v}
