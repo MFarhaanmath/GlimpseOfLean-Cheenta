@@ -14,8 +14,10 @@ open Filter Topology
 
 universe u v w
 
-structure OpenCover(X : Type v) [TopologicalSpace X] where
-  α : Type*
-  sets : α → Set X
-  isOpen_sets : ∀ a, IsOpen (sets a)
-  covers_univ : (⋃ a, sets a = Set.univ)
+def Covering_Dimension (n : ℕ) : Prop :=
+  ∀ (ι : Type v) [Fintype ι] (u : ι → Set X),
+    IsOpenCover u →
+    ∃ (κ : Type*) (_ : Fintype κ) (v : κ → Set X),
+      IsOpenCover v ∧
+      Refines v u ∧
+      HasOrderLE v n
