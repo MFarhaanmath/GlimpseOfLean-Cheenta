@@ -23,5 +23,3 @@ def Covering_Dimension (n : ℕ) : Prop :=
     IsOpenCover u →
     ∃ (k : Type*) (_ : Fintype k) (v : k → Set X),
       TsOpenCover v ∧ ...
-
--- (Keep the rest of your mathematical content below)
