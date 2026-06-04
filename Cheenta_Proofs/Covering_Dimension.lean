@@ -23,3 +23,11 @@ def Covering_Dimension (n : ℕ) : Prop :=
       IsOpenCover v ∧
       Refines v u ∧
       HasOrderLE v n
+
+theorem subspaceOfDimension
+    {Y : Set X}
+    (hY : IsClosed Y)
+    {n : ℕ}
+    (hdim : CoveringDimensionLE (X := X) n) :
+    CoveringDimensionLE (X := ↥Y) n := by
+  sorry

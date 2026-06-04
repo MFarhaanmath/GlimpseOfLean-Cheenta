@@ -113,3 +113,18 @@ lemma trivialCover_order :
   classical
 
   simp [trivialCover]
+
+lemma restrict_cover_union
+    {ι : Type*}
+    (u : ι → Set X)
+    (hu : (⋃ i, u i) = Set.univ)
+    (Y : Set X) :
+    (⋃ i, (Y ∩ u i)) = Y := by
+    calc
+    ⋃ i, (Y ∩ u i)
+        = Y ∩ (⋃ i, u i) := by
+            rw [Set.inter_iUnion]
+    _ = Y ∩ Set.univ := by
+            rw [hu]
+    _ = Y := by
+            simp
