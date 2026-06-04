@@ -31,3 +31,4 @@ theorem subspaceOfDimension
     (hdim : Covering_Dimension (X := X) n) :
     Covering_Dimension (X := ↥Y) n := by
   unfold Covering_Dimension
+  intro ι hι u hu
