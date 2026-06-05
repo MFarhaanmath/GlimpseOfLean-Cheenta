@@ -1,5 +1,7 @@
 import Mathlib.Data.Option.Basic
 import Mathlib.Topology.Separation.Regular
+import Mathlib.Topology.Basic
+import Mathlib.Topology.Constructions
 import Cheenta_Proofs.BasicLemmasforCD
 
 /-
@@ -33,3 +35,4 @@ theorem subspaceOfDimension
     Covering_Dimension (X := ↥Y) n := by
   unfold Covering_Dimension
   intro ι hι u hu
+#check isOpen_subspace_iff
