@@ -35,4 +35,7 @@ theorem subspaceOfDimension
     Covering_Dimension (X := ↥Y) n := by
   unfold Covering_Dimension
   intro ι hι u hu
-#check isOpen_subspace_iff
+  unfold IsOpenCover at hu
+  have h_open := hu.1
+  simp_rw [isOpen_induced_iff] at h_open
+  choose U hU_open hU_eq using h_open
