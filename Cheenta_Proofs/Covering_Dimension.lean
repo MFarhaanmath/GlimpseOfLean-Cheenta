@@ -24,6 +24,7 @@ def Covering_Dimension (n : ℕ) : Prop :=
       Refines v u ∧
       HasOrderLE v n
 
+
 theorem subspaceOfDimension
     {Y : Set X}
     (hY : IsClosed Y)
