@@ -33,3 +33,4 @@ theorem subspaceOfDimension
     Covering_Dimension (X := ↥Y) n := by
   unfold Covering_Dimension
   intro ι hι u hu
+  -- nobody is contributing why
