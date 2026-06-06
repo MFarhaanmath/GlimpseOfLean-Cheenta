@@ -14,7 +14,7 @@ open Set Filter Function
 
 open Filter Topology
 
-universe u v w
+universe u v
 
 variable {X : Type u} [TopologicalSpace X]
 
