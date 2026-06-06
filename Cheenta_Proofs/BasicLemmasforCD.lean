@@ -1,6 +1,9 @@
 import Mathlib.Topology.Basic
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Data.Fintype.Card
+import Mathlib.Topology.Connected.Clopen
+import Mathlib.Topology.Order.IntermediateValue
+import Mathlib.Data.Real.Basic
 
 open Set
 

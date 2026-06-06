@@ -1,9 +1,9 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["5b492e83d4620143.olean"],
-  "i": "f866f566a9491ef0.ilean",
-  "c": "abfe7c8c4a44d2ba.c"},
+ {"o": ["23e1998e41ad45ef.olean"],
+  "i": "9d928cef3d820cc6.ilean",
+  "c": "4cf8d0e88a3803d5.c"},
  "log":
  [{"message":
    ".> LEAN_PATH=C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\Cli\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\batteries\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\Qq\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\aesop\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\proofwidgets\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\importGraph\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\plausible\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\mathlib\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean c:\\Users\\DELL\\.elan\\toolchains\\leanprover--lean4---v4.27.0\\bin\\lean.exe C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\Cheenta_Proofs\\BasicLemmasforCD.lean -o C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean\\Cheenta_Proofs\\BasicLemmasforCD.olean -i C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean\\Cheenta_Proofs\\BasicLemmasforCD.ilean -c C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\ir\\Cheenta_Proofs\\BasicLemmasforCD.c --setup C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\ir\\Cheenta_Proofs\\BasicLemmasforCD.setup.json --json",
@@ -23,7 +23,17 @@
          "48d8f3008d331ada"],
         ["Mathlib.Data.Fintype.Card transitive imports (legacy)",
          "cb29bcc909f6d15d"],
-        ["Mathlib.Data.Fintype.Card:importAllArts", "56ca565ee446728b"]]]]],
+        ["Mathlib.Data.Fintype.Card:importAllArts", "56ca565ee446728b"],
+        ["Mathlib.Topology.Connected.Clopen transitive imports (legacy)",
+         "77674ad6cad622e8"],
+        ["Mathlib.Topology.Connected.Clopen:importAllArts", "3ba15fbd8163c09f"],
+        ["Mathlib.Topology.Order.IntermediateValue transitive imports (legacy)",
+         "2c0493c8e8923404"],
+        ["Mathlib.Topology.Order.IntermediateValue:importAllArts",
+         "70f1bdd5ba3d4e2d"],
+        ["Mathlib.Data.Real.Basic transitive imports (legacy)",
+         "c090838b0d25a0db"],
+        ["Mathlib.Data.Real.Basic:importAllArts", "6173f4230532096c"]]]]],
     ["libs",
      [["import dynlibs", "00000000000006bb"],
       ["package external libraries", "00000000000006bb"],
@@ -32,9 +42,9 @@
   ["Lean 4.27.0, commit db93fe1608548721853390a10cd40580fe7d22ae",
    "9a2be90fd35343e5"],
   ["C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\Cheenta_Proofs\\BasicLemmasforCD.lean",
-   "030952a7b176ed26"],
+   "41a04197b59213af"],
   ["options",
    [["-Dpp.unicode.fun=true", "9b94070140457fab"],
     ["-DautoImplicit=true", "ce2576f7641d928a"]]],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "7eac6b2219d25f19"}
+ "depHash": "d628181423de380a"}

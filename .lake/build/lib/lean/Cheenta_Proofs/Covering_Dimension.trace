@@ -1,7 +1,7 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["9ea9d156492a484f.olean"],
+ {"o": ["365ff4c9b2b81a9f.olean"],
   "i": "98ddf53297b34876.ilean",
   "c": "4ed53a4d99b36b34.c"},
  "log":
@@ -28,9 +28,9 @@
          "dff11e6831c106e4"],
         ["Mathlib.Topology.Constructions:importAllArts", "3d879d5664195af8"],
         ["Cheenta_Proofs.BasicLemmasforCD transitive imports (legacy)",
-         "9a8546820d0676fe"],
+         "bdb19e0b1f9d652d"],
         ["Cheenta_Proofs.BasicLemmasforCD:importAllArts",
-         "871ddfa325c0e504"]]]]],
+         "339f96f32c3d1ed7"]]]]],
     ["libs",
      [["import dynlibs", "00000000000006bb"],
       ["package external libraries", "00000000000006bb"],
@@ -44,4 +44,4 @@
    [["-Dpp.unicode.fun=true", "9b94070140457fab"],
     ["-DautoImplicit=true", "ce2576f7641d928a"]]],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "e268e116fdee9a92"}
+ "depHash": "52640695b9120620"}
