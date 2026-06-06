@@ -5,7 +5,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Topology.MetricSpace.Basic
 import Cheenta_Proofs.BasicLemmasforCD
 import Cheenta_Proofs.Dim0
-
+import Cheenta_Proofs.Covering_Dimension
 
 #check (inferInstance : TopologicalSpace ℝ)
 
@@ -19,13 +19,6 @@ universe u v w
 
 variable {X : Type u} [TopologicalSpace X]
 
-def Covering_Dimension (n : ℕ) : Prop :=
-  ∀ (ι : Type v) [Fintype ι] (u : ι → Set X),
-    IsOpenCover u →
-    ∃ (κ : Type*) (_ : Fintype κ) (v : κ → Set X),
-      IsOpenCover v ∧
-      Refines v u ∧
-      HasOrderLE v n
 
 
 open Set Topology
@@ -41,3 +34,4 @@ lemma real_not_dim0 : ¬ Covering_Dimension (X := ℝ)  0 := by
   obtain ⟨V, hVcover, hVclopen, hVdisjoint⟩ := hclopen U hU
   have hconn : IsConnected (univ : Set ℝ) := isConnected_univ
   exact hconn.not_disjoint_clopen_refinement V hVcover hVclopen hVdisjoint
+  sorry
