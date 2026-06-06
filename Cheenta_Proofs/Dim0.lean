@@ -4,6 +4,8 @@ import Mathlib.Topology.Basic
 import Mathlib.Topology.Constructions
 import Cheenta_Proofs.BasicLemmasforCD
 
+set_option linter.unusedVariables false
+
 /-
 Copyright (c) 2026 Cheenta Lean Project. All rights reserved.
 Authors : Adhiraj Anand, Niranjan Rao, Parum Sarda, Shravas Matta, Shreesh Nayak, Shreya Iyer
