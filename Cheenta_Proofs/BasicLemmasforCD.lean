@@ -115,11 +115,17 @@ lemma restrict_cover_union
             simp
 
 
-def IsOpenCoverGeneral {ι : Type v} (u : ι → Set X) : Prop :=
-  (∀ i, IsOpen (u i)) ∧ (⋃ i, u i) = univ
+def IsOpenCoverGeneral {ι : Type v}
+  (u : ι → Set X) :Prop :=
+  (∀ i, IsOpen (u i)) ∧
+  (⋃ i, u i) = univ
 
-def RefinesGeneral {ι : Type v} {κ : Type*} (v : κ → Set X) (u : ι → Set X) : Prop :=
+def RefinesGeneral {ι : Type v}
+  {κ : Type*} (v : κ → Set X)
+  (u : ι → Set X) : Prop :=
   ∀ k : κ, ∃ i : ι, v k ⊆ u i
 
-def HasOrderLEGeneral {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
-  ∀ (s : Finset κ), s.card = n + 2 → (⋂ k ∈ s, v k) = ∅
+def HasOrderLEGeneral {κ : Type*}
+  (v : κ → Set X) (n : ℕ) : Prop :=
+  ∀ (s : Finset κ),
+  s.card = n + 2 → (⋂ k ∈ s, v k) = ∅
