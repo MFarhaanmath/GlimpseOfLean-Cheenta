@@ -16,12 +16,13 @@ open Set Filter Function
 open Filter Topology
 open Classical Set
 
-universe u v w
+universe u v
 
-section
 variable {X : Type u} [TopologicalSpace X]
 
 open Set Topology
+
+#check @Covering_Dimension
 
 lemma real_not_dim0 : ¬ Covering_Dimension (X := ℝ) 0 := by
   intro h
