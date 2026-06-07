@@ -43,7 +43,6 @@ theorem subspaceOfDimension
       exact ⟨some i, by rw [← hU_eq i] at hi; exact hi⟩
     · exact ⟨none, h⟩
 
-  -- Explicitly define the cover to help type inference
   let cover : IsOpenCover U_ext := ⟨hU_ext_open, hU_ext_univ⟩
 
   by_cases hι : Nonempty ι

@@ -22,7 +22,6 @@ variable {X : Type u} [TopologicalSpace X]
 
 open Set Topology
 
-#check @Covering_Dimension
 
 lemma real_not_dim0 : ¬ Covering_Dimension (X := ℝ) 0 := by
   intro h
@@ -38,10 +37,7 @@ lemma real_not_dim0 : ¬ Covering_Dimension (X := ℝ) 0 := by
       by_cases hx : x < 1
       · exact ⟨0, by simp [u, hx]⟩
       · exact ⟨1, by simp [u]; push_neg at hx; linarith⟩
-  -- specialize h at Fin 2 to get κ : Type* then cast to Type
   have hFin := h (Fin 2) inferInstance u hu
-  -- hFin : ∃ κ : Type*, ∃ _ : Fintype κ, ∃ v, ...
-  -- dim0_iff needs κ : Type, so we use obtain and let Lean unify
   obtain ⟨κ, hκ, v, hvcov, hvref, hvord⟩ := hFin
   obtain ⟨κ, hκ, v, hvcov, hvref, hvdisj⟩ :=
     (dim0_iff_disjoint_clopen_refinement u hu).mp ⟨κ, hκ, v, hvcov, hvref, hvord⟩
