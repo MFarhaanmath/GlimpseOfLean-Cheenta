@@ -25,3 +25,11 @@ def Covering_Dimension (n : ℕ) : Prop :=
       IsOpenCover v ∧
       Refines v u ∧
       HasOrderLE v n
+
+def Covering_Dimension_General (n : ℕ) : Prop :=
+  ∀ (ι : Type v) (u : ι → Set X),
+    IsOpenCoverGeneral u →
+    ∃ (κ : Type*) (v : κ → Set X),
+      IsOpenCoverGeneral v ∧
+      RefinesGeneral v u ∧
+      HasOrderLEGeneral v n
