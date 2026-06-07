@@ -18,11 +18,14 @@ open Classical Set
 
 universe u v w
 
+section
 variable {X : Type u} [TopologicalSpace X]
 
 open Set Topology
 
-lemma real_not_dim0 : ¬ (Covering_Dimension (X := ℝ) (v := 0) 0) := by
+section RealDimension
+
+lemma real_not_dim0: ¬ CoveringDimension0 := by
   intro h
   classical
   let u : Fin 2 → Set ℝ :=
@@ -40,8 +43,8 @@ lemma real_not_dim0 : ¬ (Covering_Dimension (X := ℝ) (v := 0) 0) := by
   obtain ⟨κ, hκ, v, hvcov, hvref, hvdisj⟩ :=
     (dim0_iff_disjoint_clopen_refinement u hu).mp (h (Fin 2) inferInstance u hu)
   haveI : Fintype κ := hκ
-  have hconn : IsConnected (Set.univ : Set ℝ) := isConnected_univ
-  obtain ⟨s, hsU, hsuniv⟩ := isConnected_iff_sUnion_disjoint_open.mp hconn
+  obtain ⟨s, hsU, hsuniv⟩ := isConnected_iff_sUnion_disjoint_open.mp
+    (isConnected_univ (α := ℝ))
     (Finset.univ.image v)
     (fun a ha b hb hab => by
       simp only [Finset.mem_image, Finset.mem_univ, true_and] at ha hb
@@ -66,3 +69,5 @@ lemma real_not_dim0 : ¬ (Covering_Dimension (X := ℝ) (v := 0) 0) := by
     simp [u, show i = (0 : Fin 2) from Fin.ext h0] at this
   · have : (0:ℝ) ∈ u i := hfull ▸ Set.mem_univ 0
     simp [u, show i = (1 : Fin 2) from Fin.ext h1] at this
+
+end RealDimension

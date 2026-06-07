@@ -1,8 +1,8 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["365ff4c9b2b81a9f.olean"],
-  "i": "98ddf53297b34876.ilean",
+ {"o": ["249ae6a38b709b31.olean"],
+  "i": "fe90661c8754804e.ilean",
   "c": "4ed53a4d99b36b34.c"},
  "log":
  [{"message":
@@ -39,9 +39,9 @@
   ["Lean 4.27.0, commit db93fe1608548721853390a10cd40580fe7d22ae",
    "9a2be90fd35343e5"],
   ["C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\Cheenta_Proofs\\Covering_Dimension.lean",
-   "1853211a6f666b7c"],
+   "40e8ce22030fc960"],
   ["options",
    [["-Dpp.unicode.fun=true", "9b94070140457fab"],
     ["-DautoImplicit=true", "ce2576f7641d928a"]]],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "d170e23300df1759"}
+ "depHash": "a22b68f1e52cfcbf"}

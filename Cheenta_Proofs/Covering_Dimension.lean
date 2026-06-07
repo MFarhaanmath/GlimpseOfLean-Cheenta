@@ -19,7 +19,7 @@ universe u v
 variable {X : Type u} [TopologicalSpace X]
 
 def Covering_Dimension (n : ℕ) : Prop :=
-  ∀ (ι : Type v) [Fintype ι] (u : ι → Set X),
+  ∀ (ι : Type*) [Fintype ι] (u : ι → Set X),
     IsOpenCover u →
     ∃ (κ : Type*) (_ : Fintype κ) (v : κ → Set X),
       IsOpenCover v ∧
