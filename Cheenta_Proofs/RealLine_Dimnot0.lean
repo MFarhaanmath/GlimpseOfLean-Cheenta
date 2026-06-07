@@ -25,7 +25,7 @@ open Set Topology
 
 section RealDimension
 
-lemma real_not_dim0: ¬ CoveringDimension0 := by
+lemma real_not_dim0: ¬ Covering_Dimension := by
   intro h
   classical
   let u : Fin 2 → Set ℝ :=
