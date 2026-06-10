@@ -1,8 +1,8 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["7dcd679256bab892.olean"],
-  "i": "3cbff26a1575d3a9.ilean",
+ {"o": ["b7d66d4b8b9f258c.olean"],
+  "i": "def3fc48f84bcca1.ilean",
   "c": "4cf8d0e88a3803d5.c"},
  "log":
  [{"message":
@@ -42,9 +42,9 @@
   ["Lean 4.27.0, commit db93fe1608548721853390a10cd40580fe7d22ae",
    "9a2be90fd35343e5"],
   ["/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/Cheenta_Proofs/BasicLemmasforCD.lean",
-   "39eaf8a815e10f1d"],
+   "47a241764c7a0ba8"],
   ["options",
    [["-Dpp.unicode.fun=true", "9b94070140457fab"],
     ["-DautoImplicit=true", "ce2576f7641d928a"]]],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "a1ab7374df4a41db"}
+ "depHash": "294da3e4c33022f5"}

@@ -36,12 +36,26 @@ by
   classical
   exact Fintype.card { i : ι // x ∈ u i }
 
+def multiplicity_gen
+    {ι : Type*}
+    (u : ι → Set X) (x : X) (_ : ℕ) : Prop :=
+  ∀ (s : Set ι), (∀ i ∈ s, x ∈ u i) →
+    (∀ (f : ℕ → ι), (∀ n, f n ∈ s) → ¬ Function.Injective f)
+
 def HasOrderLE
     {ι : Type v}
     [Fintype ι]
     (u : ι → Set X)
     (n : ℕ) : Prop :=
   ∀ x : X, multiplicity u x ≤ n + 1
+
+
+def HasOrderLEGeneral
+    {κ : Type*}
+    (v : κ → Set X) (n : ℕ) : Prop :=
+  ∀ (s : Set κ),
+    (∀ (f : ℕ → κ), Function.Injective f → (∀ i < n + 2, f i ∈ s)) →
+    (⋂ k ∈ s, v k) = ∅
 
 
 def trivialCover : Unit → Set X :=
@@ -124,8 +138,3 @@ def RefinesGeneral {ι : Type v}
   {κ : Type*} (v : κ → Set X)
   (u : ι → Set X) : Prop :=
   ∀ k : κ, ∃ i : ι, v k ⊆ u i
-
-def HasOrderLEGeneral {κ : Type*}
-  (v : κ → Set X) (n : ℕ) : Prop :=
-  ∀ (s : Finset κ),
-  s.card = n + 2 → (⋂ k ∈ s, v k) = ∅
