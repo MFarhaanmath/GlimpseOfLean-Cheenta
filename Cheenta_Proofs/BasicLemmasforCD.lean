@@ -11,130 +11,106 @@ universe u v
 
 variable {X : Type u} [TopologicalSpace X]
 
-def IsOpenCover
-    {ι : Type v}
-    (u : ι → Set X) : Prop := -- Family of sets definition
--- using index i to U_i function.
-  (∀ i, IsOpen (u i)) ∧ -- Every U_i is open.
-  (⋃ i, u i) = Set.univ -- Union of all equals whole X
-
-def Refines
-    {ι : Type v}
-    {κ : Type*}
-    (v : κ → Set X)
-    (u : ι → Set X) : Prop :=
-  ∀ k, ∃ i, v k ⊆ u i
--- This has to be explained properly. It does cover entire set.
--- But in this case every refinement is automatically an open cover.
-
-noncomputable def multiplicity
-  {ι : Type v}
-  [Fintype ι]
-  (u : ι → Set X)
-  (x : X) : ℕ :=
-by
-  classical
-  exact Fintype.card { i : ι // x ∈ u i }
-
 def multiplicity_gen
-    {ι : Type*}
-    (u : ι → Set X) (x : X) (_ : ℕ) : Prop :=
+   {ι : Type*}
+   (u : ι → Set X) (x : X) (_ : ℕ) : Prop :=
   ∀ (s : Set ι), (∀ i ∈ s, x ∈ u i) →
     (∀ (f : ℕ → ι), (∀ n, f n ∈ s) → ¬ Function.Injective f)
 
-def HasOrderLE
-    {ι : Type v}
-    [Fintype ι]
-    (u : ι → Set X)
-    (n : ℕ) : Prop :=
-  ∀ x : X, multiplicity u x ≤ n + 1
-
 
 def HasOrderLEGeneral
-    {κ : Type*}
-    (v : κ → Set X) (n : ℕ) : Prop :=
-  ∀ (s : Set κ),
-    (∀ (f : ℕ → κ), Function.Injective f → (∀ i < n + 2, f i ∈ s)) →
-    (⋂ k ∈ s, v k) = ∅
-
-
-def trivialCover : Unit → Set X :=
-  fun _ => Set.univ
-
-lemma trivialCover_open :
-    IsOpenCover (trivialCover : Unit → Set X) := by
-  refine ⟨?_, ?_⟩
-
-  · intro i
-    simp [trivialCover]
-
-  · ext x
-    simp [trivialCover]
-
-omit [TopologicalSpace X]
-lemma refines_refl
-  {ι : Type v}
-  (u : ι → Set X) :
-  Refines u u := by
-  intro i
-  exact ⟨i, subset_rfl⟩
-
-omit [TopologicalSpace X]
-lemma refines_trans
-    {ι : Type v}
-    {κ : Type*}
-    {σ : Type*}
-    {u : ι → Set X}
-    {v : κ → Set X}
-    {w : σ → Set X}
-    (h₁ : Refines w v)
-    (h₂ : Refines v u) :
-    Refines w u := by
-
-  intro s
-
-  rcases h₁ s with ⟨k, hkv⟩
-  rcases h₂ k with ⟨i, hui⟩
-
-  refine ⟨i, ?_⟩
-
-  exact Set.Subset.trans hkv hui
-
-omit [TopologicalSpace X]
-lemma trivialCover_order :
-  HasOrderLE
-    (trivialCover : Unit → Set X)
-    0 := by
-
-  intro x
-  unfold multiplicity
-
-  classical
-
-  simp [trivialCover]
-
-lemma restrict_cover_union
-    {ι : Type*}
-    (u : ι → Set X)
-    (hu : (⋃ i, u i) = Set.univ)
-    (Y : Set X) :
-    (⋃ i, (Y ∩ u i)) = Y := by
-    calc
-    ⋃ i, (Y ∩ u i)
-        = Y ∩ (⋃ i, u i) := by
-            rw [Set.inter_iUnion]
-    _ = Y ∩ Set.univ := by
-            rw [hu]
-    _ = Y := by
-            simp
+   {κ : Type*}
+   (v : κ → Set X) (n : ℕ) : Prop :=
+ ∀ (s : Set κ),
+   (∀ (f : ℕ → κ), Function.Injective f → (∀ i < n + 2, f i ∈ s)) →
+   (⋂ k ∈ s, v k) = ∅
 
 
 def IsOpenCoverGeneral {ι : Type v}
-  (u : ι → Set X) :Prop :=
-  (∀ i, IsOpen (u i)) ∧
-  (⋃ i, u i) = univ
+ (u : ι → Set X) :Prop :=
+ (∀ i, IsOpen (u i)) ∧
+ (⋃ i, u i) = univ
+
 
 def RefinesGeneral {ι : Type v}
-  {κ : Type*} (v : κ → Set X)
-  (u : ι → Set X) : Prop :=
-  ∀ k : κ, ∃ i : ι, v k ⊆ u i
+ {κ : Type*} (v : κ → Set X)
+ (u : ι → Set X) : Prop :=
+ ∀ k : κ, ∃ i : ι, v k ⊆ u i
+
+
+
+
+def trivialCover : Unit → Set X :=
+ fun _ => Set.univ
+
+
+lemma trivialCover_open :
+   IsOpenCoverGeneral (trivialCover : Unit → Set X) := by
+ refine ⟨?_, ?_⟩
+
+
+ · intro i
+   simp [trivialCover]
+
+
+ · ext x
+   simp [trivialCover]
+
+
+omit [TopologicalSpace X]
+lemma refines_refl
+ {ι : Type v}
+ (u : ι → Set X) :
+ RefinesGeneral u u := by
+ intro i
+ exact ⟨i, subset_rfl⟩
+
+
+omit [TopologicalSpace X]
+lemma refines_trans
+   {ι : Type v}
+   {κ : Type*}
+   {σ : Type*}
+   {u : ι → Set X}
+   {v : κ → Set X}
+   {w : σ → Set X}
+   (h₁ : RefinesGeneral w v)
+   (h₂ : RefinesGeneral v u) :
+   RefinesGeneral w u := by
+
+
+ intro s
+
+
+ rcases h₁ s with ⟨k, hkv⟩
+ rcases h₂ k with ⟨i, hui⟩
+
+
+ refine ⟨i, ?_⟩
+
+
+ exact Set.Subset.trans hkv hui
+
+
+omit [TopologicalSpace X]
+lemma trivialCover_order :
+ HasOrderLEGeneral
+   (trivialCover : Unit → Set X)
+   0 := by
+  sorry
+
+
+lemma restrict_cover_union
+   {ι : Type*}
+   (u : ι → Set X)
+   (hu : (⋃ i, u i) = Set.univ)
+   (Y : Set X) :
+   (⋃ i, (Y ∩ u i)) = Y := by
+   calc
+   ⋃ i, (Y ∩ u i)
+       = Y ∩ (⋃ i, u i) := by
+           rw [Set.inter_iUnion]
+   _ = Y ∩ Set.univ := by
+           rw [hu]
+   _ = Y := by
+           simp
