@@ -16,13 +16,13 @@ universe u w
 
 variable {X : Type u} [TopologicalSpace X]
 
-def Covering_Dimension (n : ℕ) : Prop :=
+/- def Covering_Dimension (n : ℕ) : Prop :=
   ∀ (ι : Type*) [Fintype ι] (u : ι → Set X),
     IsOpenCoverGeneral u →
     ∃ (κ : Type*) (_ : Fintype κ) (v : κ → Set X),
       IsOpenCoverGeneral v ∧
       RefinesGeneral v u ∧
-      HasOrderLEGeneral v n
+      HasOrderLEGeneral v n -/
 
 def Covering_Dimension_General {X : Type u} [TopologicalSpace X] (n : ℕ) : Prop :=
   ∀ (ι : Type w) (u : ι → Set X),
