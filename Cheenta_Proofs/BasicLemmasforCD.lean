@@ -26,19 +26,16 @@ def HasOrderLEGeneral
    (⋂ k ∈ s, v k) = ∅
 
 
-def IsOpenCoverGeneral {ι : Type v}
- (u : ι → Set X) :Prop :=
+def IsOpenCoverGeneral {ι : Type*}
+ (u : ι → Set X) : Prop :=
  (∀ i, IsOpen (u i)) ∧
  (⋃ i, u i) = univ
 
 
-def RefinesGeneral {ι : Type v}
+def RefinesGeneral {ι : Type*}
  {κ : Type*} (v : κ → Set X)
  (u : ι → Set X) : Prop :=
  ∀ k : κ, ∃ i : ι, v k ⊆ u i
-
-
-
 
 def trivialCover : Unit → Set X :=
  fun _ => Set.univ
@@ -59,7 +56,7 @@ lemma trivialCover_open :
 
 omit [TopologicalSpace X]
 lemma refines_refl
- {ι : Type v}
+ {ι : Type*}
  (u : ι → Set X) :
  RefinesGeneral u u := by
  intro i
@@ -68,7 +65,7 @@ lemma refines_refl
 
 omit [TopologicalSpace X]
 lemma refines_trans
-   {ι : Type v}
+   {ι : Type*}
    {κ : Type*}
    {σ : Type*}
    {u : ι → Set X}

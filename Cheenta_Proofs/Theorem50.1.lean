@@ -19,11 +19,11 @@ theorem subspaceOfDimension
     {Y : Set X}
     (hY : IsClosed Y)
     {n : ℕ}
-    (hdim : Covering_Dimension (X := X) n) :
-    Covering_Dimension (X := ↥Y) n := by
-  unfold Covering_Dimension
-  intro ι hι u hu
-  unfold IsOpenCover at hu
+    (hdim : Covering_Dimension_General (X := X) n) :
+    Covering_Dimension_General (X := ↥Y) n := by
+  unfold Covering_Dimension_General
+  intro ι u hu
+  unfold IsOpenCoverGeneral at hu
   have h_open := hu.1
   simp_rw [isOpen_induced_iff] at h_open
   choose U hU_open hU_eq using h_open
@@ -43,7 +43,7 @@ theorem subspaceOfDimension
       exact ⟨some i, by rw [← hU_eq i] at hi; exact hi⟩
     · exact ⟨none, h⟩
 
-  let cover : IsOpenCover U_ext := ⟨hU_ext_open, hU_ext_univ⟩
+  let cover : IsOpenCoverGeneral U_ext := ⟨hU_ext_open, hU_ext_univ⟩
 
   by_cases hι : Nonempty ι
   · obtain ⟨κ, _, v, hv_cov, hv_ref, hv_ord⟩ := hdim (Option ι) cover

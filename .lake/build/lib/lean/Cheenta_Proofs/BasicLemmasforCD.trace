@@ -1,15 +1,15 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["495a99ab22980f94.olean"],
-  "i": "39048dd699d7f3a7.ilean",
+ {"o": ["c2529476169a09b3.olean"],
+  "i": "d18d0cdeefbe80bc.ilean",
   "c": "4cf8d0e88a3803d5.c"},
  "log":
  [{"message":
-   ".> LEAN_PATH=/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/Cli/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/batteries/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/Qq/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/aesop/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/importGraph/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/plausible/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/mathlib/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/build/lib/lean /Users/sip-pro/.elan/toolchains/leanprover--lean4---v4.27.0/bin/lean /Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/Cheenta_Proofs/BasicLemmasforCD.lean -o /Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/build/lib/lean/Cheenta_Proofs/BasicLemmasforCD.olean -i /Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/build/lib/lean/Cheenta_Proofs/BasicLemmasforCD.ilean -c /Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/build/ir/Cheenta_Proofs/BasicLemmasforCD.c --setup /Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/build/ir/Cheenta_Proofs/BasicLemmasforCD.setup.json --json",
+   ".> LEAN_PATH=C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\Cli\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\batteries\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\Qq\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\aesop\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\proofwidgets\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\importGraph\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\plausible\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\mathlib\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean c:\\Users\\DELL\\.elan\\toolchains\\leanprover--lean4---v4.27.0\\bin\\lean.exe C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\Cheenta_Proofs\\BasicLemmasforCD.lean -o C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean\\Cheenta_Proofs\\BasicLemmasforCD.olean -i C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean\\Cheenta_Proofs\\BasicLemmasforCD.ilean -c C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\ir\\Cheenta_Proofs\\BasicLemmasforCD.c --setup C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\ir\\Cheenta_Proofs\\BasicLemmasforCD.setup.json --json",
    "level": "trace"},
   {"message":
-   "Cheenta_Proofs/BasicLemmasforCD.lean:96:6: declaration uses 'sorry'",
+   "Cheenta_Proofs/BasicLemmasforCD.lean:93:6: declaration uses 'sorry'",
    "level": "warning"}],
  "inputs":
  [["Cheenta_Proofs.BasicLemmasforCD:deps",
@@ -44,10 +44,10 @@
       ["module plugins", "00000000000006bb"]]]]],
   ["Lean 4.27.0, commit db93fe1608548721853390a10cd40580fe7d22ae",
    "9a2be90fd35343e5"],
-  ["/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/Cheenta_Proofs/BasicLemmasforCD.lean",
-   "03b07dcb48f664cc"],
+  ["C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\Cheenta_Proofs\\BasicLemmasforCD.lean",
+   "184d2c96d4f32d54"],
   ["options",
    [["-Dpp.unicode.fun=true", "9b94070140457fab"],
     ["-DautoImplicit=true", "ce2576f7641d928a"]]],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "6423ec534a07a596"}
+ "depHash": "83e78d95a7407014"}

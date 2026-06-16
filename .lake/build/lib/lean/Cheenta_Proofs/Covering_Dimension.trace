@@ -1,12 +1,12 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["a9394b914026c7b6.olean"],
-  "i": "69591e2a42a186e5.ilean",
+ {"o": ["ee9521120e159529.olean"],
+  "i": "ebf2fc63f2f00042.ilean",
   "c": "4ed53a4d99b36b34.c"},
  "log":
  [{"message":
-   ".> LEAN_PATH=/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/Cli/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/batteries/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/Qq/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/aesop/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/importGraph/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/plausible/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/packages/mathlib/.lake/build/lib/lean:/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/build/lib/lean /Users/sip-pro/.elan/toolchains/leanprover--lean4---v4.27.0/bin/lean /Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/Cheenta_Proofs/Covering_Dimension.lean -o /Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/build/lib/lean/Cheenta_Proofs/Covering_Dimension.olean -i /Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/build/lib/lean/Cheenta_Proofs/Covering_Dimension.ilean -c /Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/build/ir/Cheenta_Proofs/Covering_Dimension.c --setup /Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/.lake/build/ir/Cheenta_Proofs/Covering_Dimension.setup.json --json",
+   ".> LEAN_PATH=C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\Cli\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\batteries\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\Qq\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\aesop\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\proofwidgets\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\importGraph\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\plausible\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\packages\\mathlib\\.lake\\build\\lib\\lean;C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean c:\\Users\\DELL\\.elan\\toolchains\\leanprover--lean4---v4.27.0\\bin\\lean.exe C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\Cheenta_Proofs\\Covering_Dimension.lean -o C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean\\Cheenta_Proofs\\Covering_Dimension.olean -i C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean\\Cheenta_Proofs\\Covering_Dimension.ilean -c C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\ir\\Cheenta_Proofs\\Covering_Dimension.c --setup C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\.lake\\build\\ir\\Cheenta_Proofs\\Covering_Dimension.setup.json --json",
    "level": "trace"}],
  "inputs":
  [["Cheenta_Proofs.Covering_Dimension:deps",
@@ -30,7 +30,7 @@
         ["Cheenta_Proofs.BasicLemmasforCD transitive imports (legacy)",
          "bdb19e0b1f9d652d"],
         ["Cheenta_Proofs.BasicLemmasforCD:importAllArts",
-         "bd366f1dfb150b4b"]]]]],
+         "87cab9aa22df89dd"]]]]],
     ["libs",
      [["import dynlibs", "00000000000006bb"],
       ["package external libraries", "00000000000006bb"],
@@ -38,10 +38,10 @@
       ["module plugins", "00000000000006bb"]]]]],
   ["Lean 4.27.0, commit db93fe1608548721853390a10cd40580fe7d22ae",
    "9a2be90fd35343e5"],
-  ["/Users/sip-pro/Documents/Shravas/git/GlimpseOfLean-Cheenta/Cheenta_Proofs/Covering_Dimension.lean",
-   "08448cad8f17b097"],
+  ["C:\\Users\\DELL\\Documents\\GitHub\\GlimpseOfLean-Cheenta\\Cheenta_Proofs\\Covering_Dimension.lean",
+   "416d498aac3b7b56"],
   ["options",
    [["-Dpp.unicode.fun=true", "9b94070140457fab"],
     ["-DautoImplicit=true", "ce2576f7641d928a"]]],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "7115ac0513ac217e"}
+ "depHash": "edd48933920d9f0e"}
