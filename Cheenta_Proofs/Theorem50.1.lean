@@ -46,7 +46,8 @@ theorem subspaceOfDimension
   let cover : IsOpenCoverGeneral U_ext := ⟨hU_ext_open, hU_ext_univ⟩
 
   by_cases hι : Nonempty ι
-  · obtain ⟨κ, v, hv_cov, hv_ref, hv_ord⟩
+  · specialize hdim U_ext cover
+    rcases hdim with ⟨κ, _, v, hv_cov, hv_ref, hv_ord⟩
     refine ⟨κ, inferInstance, fun k => Subtype.val ⁻¹' v k,
       ⟨fun k => (hv_cov.1 k).preimage continuous_subtype_val,
        by rw [← Set.preimage_iUnion, hv_cov.2, Set.preimage_univ]⟩,
@@ -54,7 +55,7 @@ theorem subspaceOfDimension
     match hv_ref k with
     | ⟨none, hj⟩ => exact ⟨Classical.choice hι, fun y hy => False.elim (hj hy y.prop)⟩
     | ⟨some i, hj⟩ => exact ⟨i, fun y hy => by rw [← hU_eq i]; exact hj hy⟩
-  · have hYa : IsEmpty Y := ⟨fun y => let ⟨i, _⟩ := Set.mem_iUnion.mp (hu.2.symm ▸ Set.mem_univ y); hι ⟨i⟩⟩
-    exact ⟨PEmpty, PEmpty.elim,
-      ⟨fun k => k.elim, by ext y; exact (hY.false y).elim⟩,
-      fun k => k.elim, fun y => (hY.false y).elim⟩
+  · have hYa : IsEmpty ↥Y := ⟨fun y => let ⟨i, _⟩ := Set.mem_iUnion.mp (hu.2.symm ▸ Set.mem_univ y); hι ⟨i⟩⟩
+    refine ⟨PEmpty, fun k => k.elim, ⟨fun k => k.elim, ?_⟩, fun k => k.elim, fun y => (hYa.false y).elim⟩
+    ext y
+    exact (hYa.false y).elim
