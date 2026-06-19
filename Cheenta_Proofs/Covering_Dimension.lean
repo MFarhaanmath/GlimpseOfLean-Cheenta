@@ -24,10 +24,10 @@ variable {X : Type u} [TopologicalSpace X]
       RefinesGeneral v u ∧
       HasOrderLEGeneral v n -/
 
-def Covering_Dimension_General {X : Type u} [TopologicalSpace X] (n : ℕ) : Prop :=
+def Covering_Dimension {X : Type u} [TopologicalSpace X] (n : ℕ) : Prop :=
   ∀ (ι : Type w) (u : ι → Set X),
-    IsOpenCoverGeneral u →
+    IsOpenCover u →
     ∃ (κ : Type w) (v : κ → Set X),
-      IsOpenCoverGeneral v ∧
-      RefinesGeneral v u ∧
-      HasOrderLEGeneral v n
+      IsOpenCover v ∧
+      Refines v u ∧
+      HasOrderLE v n
