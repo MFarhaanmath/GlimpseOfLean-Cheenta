@@ -11,14 +11,14 @@ universe u v
 
 variable {X : Type u} [TopologicalSpace X]
 
-def multiplicity_gen
+def multiplicity
    {ι : Type*}
    (u : ι → Set X) (x : X) (_ : ℕ) : Prop :=
   ∀ (s : Set ι), (∀ i ∈ s, x ∈ u i) →
     (∀ (f : ℕ → ι), (∀ n, f n ∈ s) → ¬ Function.Injective f)
 
 
-def HasOrderLEGeneral
+def HasOrderLE
    {κ : Type*}
    (v : κ → Set X) (n : ℕ) : Prop :=
  ∀ (s : Set κ),
@@ -26,13 +26,13 @@ def HasOrderLEGeneral
    (⋂ k ∈ s, v k) = ∅
 
 
-def IsOpenCoverGeneral {ι : Type*}
+def IsOpenCover {ι : Type*}
  (u : ι → Set X) : Prop :=
  (∀ i, IsOpen (u i)) ∧
  (⋃ i, u i) = univ
 
 
-def RefinesGeneral {ι : Type*}
+def Refines {ι : Type*}
  {κ : Type*} (v : κ → Set X)
  (u : ι → Set X) : Prop :=
  ∀ k : κ, ∃ i : ι, v k ⊆ u i
@@ -42,7 +42,7 @@ def trivialCover : Unit → Set X :=
 
 
 lemma trivialCover_open :
-   IsOpenCoverGeneral (trivialCover : Unit → Set X) := by
+   IsOpenCover (trivialCover : Unit → Set X) := by
  refine ⟨?_, ?_⟩
 
 
@@ -58,7 +58,7 @@ omit [TopologicalSpace X]
 lemma refines_refl
  {ι : Type*}
  (u : ι → Set X) :
- RefinesGeneral u u := by
+ Refines u u := by
  intro i
  exact ⟨i, subset_rfl⟩
 
@@ -71,9 +71,9 @@ lemma refines_trans
    {u : ι → Set X}
    {v : κ → Set X}
    {w : σ → Set X}
-   (h₁ : RefinesGeneral w v)
-   (h₂ : RefinesGeneral v u) :
-   RefinesGeneral w u := by
+   (h₁ : Refines w v)
+   (h₂ : Refines v u) :
+   Refines w u := by
 
 
  intro s
@@ -91,7 +91,7 @@ lemma refines_trans
 
 omit [TopologicalSpace X]
 lemma trivialCover_order :
- HasOrderLEGeneral
+ HasOrderLE
    (trivialCover : Unit → Set X)
    0 := by
   sorry
