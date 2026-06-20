@@ -19,8 +19,8 @@ theorem dim0_iff_disjoint_clopen_refinement_general
     (∃ (κ : Type) (v : κ → Set X), IsOpenCover v ∧ Refines v u ∧ HasOrderLE v 0) ↔
     (∃ (κ : Type) (v : κ → Set X), IsOpenCover v ∧ Refines v u ∧ ∀ k₁ k₂, k₁ ≠ k₂ → v k₁ ∩ v k₂ = ∅) := by
   constructor
-  · rintro ⟨κ, v, hcov, href, _⟩
-    exact ⟨κ, v, hcov, href, fun _ _ _ => by sorry⟩
+  · rintro ⟨κ, v, hcov, href, hord⟩
+    exact ⟨κ, v, hcov, href, fun k₁ k₂ hne => hord k₁ k₂ hne⟩
   · rintro ⟨κ, v, hcov, href, hdisj⟩
     rcases isEmpty_or_nonempty κ with hκ | hne
     · have hX : IsEmpty X := ⟨fun x => by

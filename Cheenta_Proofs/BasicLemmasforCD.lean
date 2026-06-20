@@ -25,6 +25,14 @@ def HasOrderLE
    (∀ (f : ℕ → κ), Function.Injective f → (∀ i < n + 2, f i ∈ s)) →
    (⋂ k ∈ s, v k) = ∅
 
+def HasOrderLE_for_dim0
+    {κ : Type*}
+    (v : κ → Set X) (n : ℕ) : Prop :=
+  ∀ (s : Set κ),
+    (∃ f : ℕ → κ,
+      (∀ i j, i < n + 2 → j < n + 2 → i ≠ j → f i ≠ f j) ∧
+      (∀ i < n + 2, f i ∈ s)) →
+    (⋂ k ∈ s, v k) = ∅
 
 def IsOpenCover {ι : Type*}
  (u : ι → Set X) : Prop :=

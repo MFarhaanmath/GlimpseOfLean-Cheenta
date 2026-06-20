@@ -30,4 +30,4 @@ def Covering_Dimension {X : Type u} [TopologicalSpace X] (n : ℕ) : Prop :=
     ∃ (κ : Type w) (v : κ → Set X),
       IsOpenCover v ∧
       Refines v u ∧
-      HasOrderLE v n
+      HasOrderLE_for_dim0 v n
