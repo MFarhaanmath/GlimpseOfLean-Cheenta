@@ -33,7 +33,7 @@ def HasOrderLE_for_dim0
       (∀ i < n + 2, f i ∈ s)) →
     (⋂ k ∈ s, v k) = ∅
 
-def HasOrderLERMN
+def HasOrderLERM -- Refined Mathematically
     {κ : Type*}
     (v : κ → Set X) (n : ℕ) : Prop :=
   ∀ (x : X) (f : ℕ → κ),
