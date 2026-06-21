@@ -1,14 +1,17 @@
 import Mathlib.Data.Set.Basic
 import Mathlib.Data.Option.Basic
 import Mathlib.Topology.Separation.Regular
+import Cheenta_Proofs.BasicLemmasforCD
 
-variable {X : Type}
 
-axiom DimLe : Set X → ℕ → Prop
+variable {X : Type}[TopologicalSpace X]
 
-axiom dimLe_succ_split {S : Set X} {n : ℕ} :
-  DimLe S (n + 1) ↔ ∃ A B : Set X, S = A ∪ B ∧ DimLe A 0 ∧ DimLe B n
+def DimLe (S : Set X) (n : ℕ) : Prop :=
+  ∀ C, IsOpenCover C S → trivialCover C → ∃ D, IsOpenCover D S ∧ Refines D C ∧ HasOrderLE D n
 
+lemma dimLe_succ_split {S : Set X} {n : ℕ} :
+  DimLe S (n + 1) ↔ ∃ A B : Set X, S = A ∪ B ∧ DimLe A 0 ∧ DimLe B n := by
+  sorry
 
 lemma dimension_decomposition_set (S : Set X) (n : ℕ) :
   DimLe S n ↔ ∃ Xs : ℕ → Set X, S = (⋃ i ≤ n, Xs i) ∧ ∀ i ≤ n, DimLe (Xs i) 0 := by
