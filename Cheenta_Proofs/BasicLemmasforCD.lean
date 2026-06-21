@@ -33,14 +33,7 @@ def HasOrderLE_for_dim0
       (∀ i < n + 2, f i ∈ s)) →
     (⋂ k ∈ s, v k) = ∅
 
-def HasOrderLEBETTERWITHOUTTRAVIS
-    {κ : Type*}
-    (v : κ → Set X) (n : ℕ) : Prop :=
-  ∀ (f : Fin (n + 2) → κ),
-    Function.Injective f →
-    (⋂ i : Fin (n + 2), v (f i)) = ∅
-
-def HasOrderLEBETTERWITHOUTTRAVIS2
+def HasOrderLERMN
     {κ : Type*}
     (v : κ → Set X) (n : ℕ) : Prop :=
   ∀ (x : X) (f : ℕ → κ),
