@@ -36,7 +36,7 @@ theorem subspaceOfDimension
     | none => exact isOpen_compl_iff.mpr hY
     | some i => exact hU_open i
   have hU_ext_univ : ⋃ (j : Option ι), U_ext j = univ := by
-    ext x; simp only [Set.mem_iUnion, Set.mem_univ, iff_true]
+    ext x; simp [Set.mem_iUnion, Set.mem_univ, iff_true]
     by_cases h : x ∈ Y
     · have hx : (⟨x, h⟩ : Y) ∈ ⋃ i, u i := hu.2.symm ▸ Set.mem_univ _
       obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hx
