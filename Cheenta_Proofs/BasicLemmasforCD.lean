@@ -17,7 +17,6 @@ def multiplicity
   ∀ (s : Set ι), (∀ i ∈ s, x ∈ u i) →
     (∀ (f : ℕ → ι), (∀ n, f n ∈ s) → ¬ Function.Injective f)
 
-
 def HasOrderLE
    {κ : Type*}
    (v : κ → Set X) (n : ℕ) : Prop :=
@@ -34,11 +33,17 @@ def HasOrderLE_for_dim0
       (∀ i < n + 2, f i ∈ s)) →
     (⋂ k ∈ s, v k) = ∅
 
+def HasOrderLEBETTERWITHOUTTRAVIS
+    {κ : Type*}
+    (v : κ → Set X) (n : ℕ) : Prop :=
+  ∀ (f : Fin (n + 2) → κ),
+    Function.Injective f →
+    (⋂ i : Fin (n + 2), v (f i)) = ∅
+
 def IsOpenCover {ι : Type*}
  (u : ι → Set X) : Prop :=
  (∀ i, IsOpen (u i)) ∧
  (⋃ i, u i) = univ
-
 
 def Refines {ι : Type*}
  {κ : Type*} (v : κ → Set X)
@@ -48,19 +53,13 @@ def Refines {ι : Type*}
 def trivialCover : Unit → Set X :=
  fun _ => Set.univ
 
-
 lemma trivialCover_open :
    IsOpenCover (trivialCover : Unit → Set X) := by
  refine ⟨?_, ?_⟩
-
-
  · intro i
    simp [trivialCover]
-
-
  · ext x
    simp [trivialCover]
-
 
 omit [TopologicalSpace X]
 lemma refines_refl
@@ -69,7 +68,6 @@ lemma refines_refl
  Refines u u := by
  intro i
  exact ⟨i, subset_rfl⟩
-
 
 omit [TopologicalSpace X]
 lemma refines_trans
@@ -82,20 +80,11 @@ lemma refines_trans
    (h₁ : Refines w v)
    (h₂ : Refines v u) :
    Refines w u := by
-
-
  intro s
-
-
  rcases h₁ s with ⟨k, hkv⟩
  rcases h₂ k with ⟨i, hui⟩
-
-
  refine ⟨i, ?_⟩
-
-
  exact Set.Subset.trans hkv hui
-
 
 omit [TopologicalSpace X]
 lemma trivialCover_order :
@@ -103,7 +92,6 @@ lemma trivialCover_order :
    (trivialCover : Unit → Set X)
    0 := by
   sorry
-
 
 lemma restrict_cover_union
    {ι : Type*}
