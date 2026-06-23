@@ -16,7 +16,7 @@ variable {X : Type u} [TopologicalSpace X]
 
 theorem dim0_iff_disjoint_clopen_refinement_general
     {ι : Type*} (u : ι → Set X) (hu : IsOpenCover u) :
-    (∃ (κ : Type) (v : κ → Set X), IsOpenCover v ∧ Refines v u ∧ HasOrderLE v 0) ↔
+    (∃ (κ : Type) (v : κ → Set X), IsOpenCover v ∧ Refines v u ∧ HasOrderEq v 0) ↔
     (∃ (κ : Type) (v : κ → Set X), IsOpenCover v ∧ Refines v u ∧ ∀ k₁ k₂, k₁ ≠ k₂ → v k₁ ∩ v k₂ = ∅) := by
     constructor
     · rintro ⟨κ, v, hcov, href, hord⟩
@@ -45,7 +45,8 @@ theorem dim0_iff_disjoint_clopen_refinement_general
         · rintro (k | _)
           · exact href k
           · exact ⟨(href hne.some).choose, Set.empty_subset _⟩
-        · intro s hf
+        · unfold HasOrderEq
+          intro s hf
           by_cases hs : ∃ k₁ ∈ s, ∃ k₂ ∈ s, k₁ ≠ k₂
           · obtain ⟨k₁, hk₁, k₂, hk₂, hne⟩ := hs
             apply eq_empty_of_subset_empty; intro x hx
