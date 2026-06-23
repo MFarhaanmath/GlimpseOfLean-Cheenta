@@ -12,7 +12,7 @@ Authors : Adhiraj Anand, Niranjan Rao, Parum Sarda, Shravas Matta, Shreesh Nayak
 
 public section
 open Set
-universe u v
+universe v
 variable {X : Type u} [TopologicalSpace X]
 
 theorem subspaceOfDimension
@@ -22,7 +22,7 @@ theorem subspaceOfDimension
     (hdim : Covering_Dimension (X := X) n) :
     Covering_Dimension (X := ↥Y) n := by
   unfold Covering_Dimension at hdim ⊢
-  intro ι u hu
+  intro (ι : Type u_1) u hu
   unfold IsOpenCover at hu
   have h_open := hu.1
   simp_rw [isOpen_induced_iff] at h_open
@@ -46,7 +46,7 @@ theorem subspaceOfDimension
   let cover : IsOpenCover U_ext := ⟨hU_ext_open, hU_ext_univ⟩
 
   by_cases hι : Nonempty ι
-  · specialize hdim U_ext cover
+  · specialize hdim _ U_ext cover
     rcases hdim with ⟨κ, _, v, hv_cov, hv_ref, hv_ord⟩
     refine ⟨κ, inferInstance, fun k => Subtype.val ⁻¹' v k,
       ⟨fun k => (hv_cov.1 k).preimage continuous_subtype_val,

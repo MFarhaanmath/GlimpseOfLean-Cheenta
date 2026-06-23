@@ -31,20 +31,6 @@ def HasOrderEq
     Function.Injective g ∧
     (⋂ i, v (g i)) ≠ ∅
 
-def HasOrderLE2
-    {κ : Type*}
-    (v : κ → Set X) (n : ℕ) : Prop :=
-  ∀ (x : X) (f : ℕ → κ),
-    Function.Injective f →
-    ∃ i ≤ n + 1, x ∉ v (f i)
-
-def HasOrderEq2
-    {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
-  HasOrderLE v n ∧
-  ∃ (g : ℕ → κ) (x : X),
-    Function.Injective g ∧
-    ∀ i ≤ n, x ∈ v (g i)
-
 def IsOpenCover {ι : Type*}
  (u : ι → Set X) : Prop :=
  (∀ i, IsOpen (u i)) ∧
