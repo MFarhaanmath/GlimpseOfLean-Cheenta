@@ -29,39 +29,33 @@ lemma closed_compact
         simpa [U] using hAc_open
     | some i =>
         simpa [U] using hcover i
-  have hU_cover : ∀ x : X, x ∈ ⋃ j, U j := by
+  have hU_cover : ∀ x : X, ∃ j, x ∈ U j := by
     intro x
     by_cases hx : x ∈ A
     · have hxcover := hAcover hx
-      rcases mem_iUnion.mp hxcover with ⟨i, hi⟩
-      have hmem : x ∈ U (some i) := by
-        simpa [U] using hi
-      exact mem_iUnion.mpr ⟨some i, hmem⟩
-    · have hmem : x ∈ U none := by
-        simpa [U] using hx
-      exact mem_iUnion.mpr ⟨none, hmem⟩
-  -- Apply compactness of X to get a finite subcover s : Finset (Option 𝒜)
-  have hcompact := isCompact_univ (α := X)
-  rw [isCompact_iff_finite_subcover] at hcompact
-  obtain ⟨s, hs⟩ := hcompact U hU_open (by simp [hU_cover])
-  -- Strip the `none` option out; only the `some` indices cover A
-  refine ⟨s.filterMap id, ?_⟩
+      -- Pure logic extraction from the definition of a union
+      obtain ⟨i, hi⟩ := hxcover
+      exact ⟨some i, hi⟩
+    · exact ⟨none, hx⟩
+
+  -- 2. Use the CompactSpace definition of X directly.
+  -- In Lean 4, a CompactSpace is defined by its `isCompact_univ` property.
+  obtain ⟨s, hs⟩ := CompactSpace.isCompact_univ U hU_open hU_cover
+
+  -- 3. Construct the finite subcover for A using basic logic
+  refine ⟨Finset.filterMap id s, ?_⟩
   intro x hx
-  -- x ∈ A, so x ∉ Aᶜ, so the `none` set didn't cover x
-  -- therefore x must be in some U (some i) for i ∈ s
-  have hxU := hs (Set.mem_univ x)
-  simp only [Set.mem_iUnion, Finset.mem_coe] at hxU
-  obtain ⟨j, hjs, hjx⟩ := hxU
-  -- j can't be none because x ∈ A
+
+  -- Look up x in the total space cover guaranteed by `hs`
+  have hx_univ : x ∈ Set.univ := Set.mem_univ x
+  have hx_s := hs hx_univ
+  obtain ⟨j, hjs, hjx⟩ := hx_s
+
+  -- Case split on the index j to eliminate the `none` case by contradiction
   cases j with
   | none =>
-      -- U none = Aᶜ, but x ∈ A — contradiction
-      simp [U] at hjx
-      exact hjx hx
+      exact False.elim (hjx hx)
   | some i =>
-      -- j = some i, so i ∈ s.filterMap id and x ∈ ↑i
-      simp only [Set.mem_iUnion, Finset.mem_coe]
-      refine ⟨i, ?_, ?_⟩
-      · simp only [Finset.mem_filterMap, Function.comp]
-        exact ⟨some i, hjs, rfl⟩
-      · simpa [U] using hjx
+      refine ⟨i, ?_, hjx⟩
+      rw [Finset.mem_filterMap]
+      exact ⟨some i, hjs, rfl⟩
