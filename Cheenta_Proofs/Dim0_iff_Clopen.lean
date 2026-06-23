@@ -18,41 +18,46 @@ theorem dim0_iff_disjoint_clopen_refinement_general
     {ι : Type*} (u : ι → Set X) (hu : IsOpenCover u) :
     (∃ (κ : Type) (v : κ → Set X), IsOpenCover v ∧ Refines v u ∧ HasOrderLE v 0) ↔
     (∃ (κ : Type) (v : κ → Set X), IsOpenCover v ∧ Refines v u ∧ ∀ k₁ k₂, k₁ ≠ k₂ → v k₁ ∩ v k₂ = ∅) := by
-  constructor
-  · rintro ⟨κ, v, hcov, href, hord⟩
-    exact ⟨κ, v, hcov, href, fun k₁ k₂ hne => hord k₁ k₂ hne⟩
-  · rintro ⟨κ, v, hcov, href, hdisj⟩
-    rcases isEmpty_or_nonempty κ with hκ | hne
-    · have hX : IsEmpty X := ⟨fun x => by
-        have h := hcov.2 ▸ Set.mem_univ x
-        rwa [Set.iUnion_eq_empty.mpr fun k => hκ.elim k] at h⟩
-      exact ⟨κ, v, hcov, href, fun s _ => eq_empty_of_subset_empty fun x _ => hX.elim x⟩
-    · refine ⟨Sum κ ℕ, Sum.elim v (fun _ => ∅), ?_, ?_, ?_⟩
-      · constructor
+    constructor
+    · rintro ⟨κ, v, hcov, href, hord⟩
+      --exact ⟨κ, v, hcov, href, hord.1⟩ or this ->
+      refine ⟨κ, v, hcov, href, ?_⟩
+      intro k₁ k₂ hne
+      have hle : v k₁ ∩ v k₂ = ∅ := by
+        exact hord.1 k₁ k₂ hne
+      exact hle
+    · rintro ⟨κ, v, hcov, href, hdisj⟩
+      rcases isEmpty_or_nonempty κ with hκ | hne
+      · have hX : IsEmpty X := ⟨fun x => by
+          have h := hcov.2 ▸ Set.mem_univ x
+          rwa [Set.iUnion_eq_empty.mpr fun k => hκ.elim k] at h⟩
+        exact ⟨κ, v, hcov, href, fun s _ => eq_empty_of_subset_empty fun x _ => hX.elim x⟩
+      · refine ⟨Sum κ ℕ, Sum.elim v (fun _ => ∅), ?_, ?_, ?_⟩
+        · constructor
+          · rintro (k | _)
+            · exact hcov.1 k
+            · exact isOpen_empty
+          · simp only [Set.eq_univ_iff_forall, Set.mem_iUnion, Sum.exists, Sum.elim_inl,
+                       Sum.elim_inr, Set.mem_empty_iff_false]
+            intro x
+            have ⟨k, hk⟩ := Set.mem_iUnion.mp (hcov.2 ▸ Set.mem_univ x)
+            exact Or.inl ⟨k, hk⟩
         · rintro (k | _)
-          · exact hcov.1 k
-          · exact isOpen_empty
-        · simp only [Set.eq_univ_iff_forall, Set.mem_iUnion, Sum.exists, Sum.elim_inl,
-                     Sum.elim_inr, Set.mem_empty_iff_false]
-          intro x
-          have ⟨k, hk⟩ := Set.mem_iUnion.mp (hcov.2 ▸ Set.mem_univ x)
-          exact Or.inl ⟨k, hk⟩
-      · rintro (k | _)
-        · exact href k
-        · exact ⟨(href hne.some).choose, Set.empty_subset _⟩
-      · intro s hf
-        by_cases hs : ∃ k₁ ∈ s, ∃ k₂ ∈ s, k₁ ≠ k₂
-        · obtain ⟨k₁, hk₁, k₂, hk₂, hne⟩ := hs
-          apply eq_empty_of_subset_empty; intro x hx
-          simp only [Set.mem_iInter] at hx
-          have hd : Sum.elim v (fun _ => ∅) k₁ ∩ Sum.elim v (fun _ => ∅) k₂ = ∅ :=
-            match k₁, k₂ with
-            | .inl j₁, .inl j₂ => hdisj j₁ j₂ (mt (congrArg Sum.inl) hne)
-            | .inl _, .inr _ | .inr _, _ => by simp
-          exact hd ▸ ⟨hx k₁ hk₁, hx k₂ hk₂⟩
-        · push_neg at hs
-          exact absurd
-            (Sum.inr_injective (hs _
-              (hf Sum.inr Sum.inr_injective 0 (by norm_num)) _
-              (hf Sum.inr Sum.inr_injective 1 (by norm_num))))
-            (by norm_num)
+          · exact href k
+          · exact ⟨(href hne.some).choose, Set.empty_subset _⟩
+        · intro s hf
+          by_cases hs : ∃ k₁ ∈ s, ∃ k₂ ∈ s, k₁ ≠ k₂
+          · obtain ⟨k₁, hk₁, k₂, hk₂, hne⟩ := hs
+            apply eq_empty_of_subset_empty; intro x hx
+            simp only [Set.mem_iInter] at hx
+            have hd : Sum.elim v (fun _ => ∅) k₁ ∩ Sum.elim v (fun _ => ∅) k₂ = ∅ :=
+              match k₁, k₂ with
+              | .inl j₁, .inl j₂ => hdisj j₁ j₂ (mt (congrArg Sum.inl) hne)
+              | .inl _, .inr _ | .inr _, _ => by simp
+            exact hd ▸ ⟨hx k₁ hk₁, hx k₂ hk₂⟩
+          · push_neg at hs
+            exact absurd
+              (Sum.inr_injective (hs _
+                (hf Sum.inr Sum.inr_injective 0 (by norm_num)) _
+                (hf Sum.inr Sum.inr_injective 1 (by norm_num))))
+              (by norm_num)
