@@ -12,7 +12,7 @@ Authors : Adhiraj Anand, Niranjan Rao, Parum Sarda, Shravas Matta, Shreesh Nayak
 
 public section
 open Set
-universe v
+universe v w
 variable {X : Type u} [TopologicalSpace X]
 
 theorem subspaceOfDimension
