@@ -22,7 +22,7 @@ theorem subspaceOfDimension
     (hdim : Covering_Dimension (X := X) n) :
     Covering_Dimension (X := ↥Y) n := by
   unfold Covering_Dimension at hdim ⊢
-  intro (ι : Type u_1) u hu
+  intro ι u hu
   unfold IsOpenCover at hu
   have h_open := hu.1
   simp_rw [isOpen_induced_iff] at h_open

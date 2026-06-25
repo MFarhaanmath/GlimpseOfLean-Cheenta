@@ -20,7 +20,6 @@ theorem dim0_iff_disjoint_clopen_refinement_general
     (∃ (κ : Type) (v : κ → Set X), IsOpenCover v ∧ Refines v u ∧ ∀ k₁ k₂, k₁ ≠ k₂ → v k₁ ∩ v k₂ = ∅) := by
     constructor
     · rintro ⟨κ, v, hcov, href, hord⟩
-      --exact ⟨κ, v, hcov, href, hord.1⟩ or this ->
       refine ⟨κ, v, hcov, href, ?_⟩
       intro k₁ k₂ hne
       have hle : v k₁ ∩ v k₂ = ∅ := by
