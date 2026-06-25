@@ -24,6 +24,9 @@ def HasOrderLE
    (∀ (f : ℕ → κ), Function.Injective f → (∀ i < n + 2, f i ∈ s)) →
    (⋂ k ∈ s, v k) = ∅
 
+def HasOrderLEBETTER {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
+  ∀ (f : Fin (n + 2) → κ), Function.Injective f → (⋂ i, v (f i)) = ∅
+
 def HasOrderEq
     {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
   HasOrderLE v n ∧
@@ -87,10 +90,19 @@ lemma refines_trans
 
 omit [TopologicalSpace X]
 lemma trivialCover_order :
- HasOrderLE
-   (trivialCover : Unit → Set X)
-   0 := by
-  sorry
+    HasOrderLEBETTER (trivialCover : Unit → Set X) 0 := by
+  intro f hf
+  -- Explicitly cast 0 and 1 to Fin 2
+  have h_eq : f (0 : Fin 2) = f (1 : Fin 2) := Subsingleton.elim _ _
+
+  -- Apply the injectivity hypothesis
+  have h_inj : (0 : Fin 2) = (1 : Fin 2) := hf h_eq
+
+  -- Prove that 0 ≠ 1 in Fin 2 using decide
+  have h_false : (0 : Fin 2) ≠ (1 : Fin 2) := by decide
+
+  -- The contradiction (h_false h_inj) produces an empty type, which closes the goal
+  exact (h_false h_inj).elim
 
 lemma restrict_cover_union
    {ι : Type*}

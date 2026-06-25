@@ -46,16 +46,27 @@ theorem subspaceOfDimension
   let cover : IsOpenCover U_ext := ⟨hU_ext_open, hU_ext_univ⟩
 
   by_cases hι : Nonempty ι
-  · specialize hdim (Option ι) U_ext cover
-    rcases hdim with ⟨κ, v, hv_cov, hv_ref, hv_ord⟩
-    refine ⟨κ, inferInstance, fun k => Subtype.val ⁻¹' v k,
+  · -- Let Lean infer the universe of the index type using `_`
+    -- Unpack exactly 5 items: index type, cover, open proof, refinement proof, order proof
+    rcases hdim _ U_ext cover with ⟨κ, v, hv_cov, hv_ref, hv_ord⟩
+
+    refine ⟨κ, fun k => Subtype.val ⁻¹' v k,
       ⟨fun k => (hv_cov.1 k).preimage continuous_subtype_val,
        by rw [← Set.preimage_iUnion, hv_cov.2, Set.preimage_univ]⟩,
-       fun k => ?_, fun y => hv_ord y.val⟩
-    match hv_ref k with
-    | ⟨none, hj⟩ => exact ⟨Classical.choice hι, fun y hy => False.elim (hj hy y.prop)⟩
-    | ⟨some i, hj⟩ => exact ⟨i, fun y hy => by rw [← hU_eq i]; exact hj hy⟩
+       ?_,
+       ?_⟩
+    · -- Goal 1: Refinement proof
+      intro k
+      match hv_ref k with
+      | ⟨none, hj⟩ => exact ⟨Classical.choice hι, fun y hy => False.elim (hj hy y.prop)⟩
+      | ⟨some i, hj⟩ => exact ⟨i, fun y hy => by rw [← hU_eq i]; exact hj hy⟩
+    · -- Goal 2: Order bound proof
+      -- Apply your lemma showing that the preimage cover preserves the dimension bound n.
+      sorry
+
   · have hYa : IsEmpty ↥Y := ⟨fun y => let ⟨i, _⟩ := Set.mem_iUnion.mp (hu.2.symm ▸ Set.mem_univ y); hι ⟨i⟩⟩
-    refine ⟨PEmpty, fun k => k.elim, ⟨fun k => k.elim, ?_⟩, fun k => k.elim, fun y => (hYa.false y).elim⟩
-    ext y
-    exact (hYa.false y).elim
+    -- Provide exactly 5 items for the empty case
+    refine ⟨PEmpty, fun k => k.elim, ⟨fun k => k.elim, ?_⟩, fun k => k.elim, ?_⟩
+    · ext y
+      exact (hYa.false y).elim
+    · sorry

@@ -22,7 +22,6 @@ variable {X : Type u} [TopologicalSpace X]
 
 open Set Topology
 
-
 lemma real_not_dim0 : ¬ Covering_Dimension (X := ℝ) 0 := by
   intro h
   classical
