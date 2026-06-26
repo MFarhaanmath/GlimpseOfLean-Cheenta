@@ -18,7 +18,7 @@ def multiplicity
   ∀ (s : Set ι), (∀ i ∈ s, x ∈ u i) →
     (∀ (f : ℕ → ι), (∀ n, f n ∈ s) → ¬ Function.Injective f)
 
-def HasOrderLE
+/-def HasOrderLE
    {κ : Type*}
    (v : κ → Set X) (n : ℕ) : Prop :=
  ∀ (s : Set κ),
@@ -43,10 +43,15 @@ def HasOrderEq_2 {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
     Function.Injective g ∧
     (⋂ i, v (g i)) ≠ ∅
 
-/-def IsOpenCover {ι : Type*}
+def IsOpenCover {ι : Type*}
  (u : ι → Set X) : Prop :=
  (∀ i, IsOpen (u i)) ∧
  (⋃ i, u i) = univ hi hi hi-/
+
+ def HasOrderLE_i_shravas_think_most_munkres_accurate {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
+  ∀ s : Finset κ,
+    s.card = n + 2 →
+    (⋂ k ∈ (↑s : Set κ), v k) = ∅
 
 def Refines {ι : Type*}
   {κ : Type*} (v : κ → Set X)
@@ -87,13 +92,29 @@ lemma refines_trans
  exact Set.Subset.trans hkv hui
 
 omit [TopologicalSpace X] in
-lemma trivialCover_order :
+
+/-lemma trivialCover_order :
     HasOrderLEBETTER (trivialCover : Unit → Set X) 0 := by
   intro f hf
   have h_eq : f (0 : Fin 2) = f (1 : Fin 2) := Subsingleton.elim _ _
   have h_inj : (0 : Fin 2) = (1 : Fin 2) := hf h_eq
   have h_false : (0 : Fin 2) ≠ (1 : Fin 2) := by decide
-  exact (h_false h_inj).elim
+  exact (h_false h_inj).elim-/
+
+lemma trivialCover_order :
+    HasOrderLE_i_shravas_think_most_munkres_accurate (trivialCover : Unit → Set X) 0 := by
+  classical
+  intro s hs
+  have hcard : s.card ≤ 1 := by
+    classical
+    refine (s.card_le_one).2 ?_
+    intro a ha b hb
+    exact Subsingleton.elim a b
+  have hlt : s.card < 2 := Nat.lt_of_le_of_lt hcard (by decide)
+  have hfalse : False := by
+    rw [hs] at hlt
+    exact Nat.lt_irrefl 2 hlt
+  exact hfalse.elim
 
 omit [TopologicalSpace X] in
 lemma restrict_cover_union
