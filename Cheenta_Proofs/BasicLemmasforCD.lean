@@ -46,7 +46,7 @@ def HasOrderEq_2 {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
 /-def IsOpenCover {ι : Type*}
  (u : ι → Set X) : Prop :=
  (∀ i, IsOpen (u i)) ∧
- (⋃ i, u i) = univ-/
+ (⋃ i, u i) = univ hi hi hi-/
 
 def Refines {ι : Type*}
   {κ : Type*} (v : κ → Set X)
@@ -58,11 +58,8 @@ def trivialCover : Unit → Set X :=
 
 lemma trivialCover_open :
    TopologicalSpace.IsOpenCover (fun _ => ⟨Set.univ, isOpen_univ⟩ : Unit → TopologicalSpace.Opens X) := by
- refine ⟨?_, ?_⟩
- · intro i
-   simp
- · ext x
-   simp
+ classical
+ simp [TopologicalSpace.IsOpenCover]
 
 omit [TopologicalSpace X] in
 lemma refines_refl
