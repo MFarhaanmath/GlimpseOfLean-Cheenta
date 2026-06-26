@@ -1,16 +1,13 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["23905799eb1210dd.olean"],
-  "i": "d950e7344e01f0c6.ilean",
+ {"o": ["7bd305efcc6ac8d6.olean"],
+  "i": "b9565fa3b9787155.ilean",
   "c": "4cf8d0e88a3803d5.c"},
  "log":
  [{"message":
    ".> LEAN_PATH=C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\packages\\Cli\\.lake\\build\\lib\\lean;C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\packages\\batteries\\.lake\\build\\lib\\lean;C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\packages\\Qq\\.lake\\build\\lib\\lean;C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\packages\\aesop\\.lake\\build\\lib\\lean;C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\packages\\proofwidgets\\.lake\\build\\lib\\lean;C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\packages\\importGraph\\.lake\\build\\lib\\lean;C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib\\lean;C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\packages\\plausible\\.lake\\build\\lib\\lean;C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\packages\\mathlib\\.lake\\build\\lib\\lean;C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean c:\\Users\\niran\\.elan\\toolchains\\leanprover--lean4---v4.27.0\\bin\\lean.exe C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\Cheenta_Proofs\\BasicLemmasforCD.lean -o C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean\\Cheenta_Proofs\\BasicLemmasforCD.olean -i C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\build\\lib\\lean\\Cheenta_Proofs\\BasicLemmasforCD.ilean -c C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\build\\ir\\Cheenta_Proofs\\BasicLemmasforCD.c --setup C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\.lake\\build\\ir\\Cheenta_Proofs\\BasicLemmasforCD.setup.json --json",
-   "level": "trace"},
-  {"message":
-   "Cheenta_Proofs/BasicLemmasforCD.lean:89:6: declaration uses 'sorry'",
-   "level": "warning"}],
+   "level": "trace"}],
  "inputs":
  [["Cheenta_Proofs.BasicLemmasforCD:deps",
    [["deps",
@@ -45,9 +42,9 @@
   ["Lean 4.27.0, commit db93fe1608548721853390a10cd40580fe7d22ae",
    "9a2be90fd35343e5"],
   ["C:\\Users\\niran\\Desktop\\GlimpseOfLean-Cheenta\\Cheenta_Proofs\\BasicLemmasforCD.lean",
-   "0ad2fdb998b968e3"],
+   "ff9283f4ab611487"],
   ["options",
    [["-Dpp.unicode.fun=true", "9b94070140457fab"],
     ["-DautoImplicit=true", "ce2576f7641d928a"]]],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "a9cd63ab072fb4bc"}
+ "depHash": "1c05b5530eab36e8"}
