@@ -16,46 +16,47 @@ universe v w
 variable {X : Type u} [TopologicalSpace X]
 
 theorem subspaceOfDimension
-    {Y : Set X}
-    (hY : IsClosed Y)
-    {n : ℕ}
-    (hdim : Covering_Dimension (X := X) n) :
-    Covering_Dimension (X := ↥Y) n := by
-  unfold Covering_Dimension at hdim ⊢
-  intro ι u hu
-  unfold IsOpenCover at hu
-  have h_open := hu.1
-  simp_rw [isOpen_induced_iff] at h_open
-  choose U hU_open hU_eq using h_open
-  let U_ext : Option ι → Set X := fun
-    | none => Yᶜ
-    | some i => U i
-  have hU_ext_open : ∀ (j : Option ι), IsOpen (U_ext j) := by
-    intro j
-    cases j with
-    | none => exact isOpen_compl_iff.mpr hY
-    | some i => exact hU_open i
-  have hU_ext_univ : ⋃ (j : Option ι), U_ext j = univ := by
-    ext x; simp [Set.mem_iUnion, Set.mem_univ, iff_true]
-    by_cases h : x ∈ Y
-    · have hx : (⟨x, h⟩ : Y) ∈ ⋃ i, u i := hu.2.symm ▸ Set.mem_univ _
-      obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hx
-      exact ⟨some i, by rw [← hU_eq i] at hi; exact hi⟩
-    · exact ⟨none, h⟩
+  {Y : Set X}
+  (hY : IsClosed Y)
+  {n : ℕ}
+  (hdim : Covering_Dimension.{u, v} (X := X) n) :
+  Covering_Dimension.{u, v} (X := ↥Y) n := by
 
-  let cover : IsOpenCover U_ext := ⟨hU_ext_open, hU_ext_univ⟩
+    unfold Covering_Dimension
+    intro ι u hu
 
-  by_cases hι : Nonempty ι
-  · specialize hdim (Option ι) U_ext cover
-    rcases hdim with ⟨κ, v, hv_cov, hv_ref, hv_ord⟩
-    refine ⟨κ, inferInstance, fun k => Subtype.val ⁻¹' v k,
-      ⟨fun k => (hv_cov.1 k).preimage continuous_subtype_val,
-       by rw [← Set.preimage_iUnion, hv_cov.2, Set.preimage_univ]⟩,
-       fun k => ?_, fun y => hv_ord y.val⟩
-    match hv_ref k with
-    | ⟨none, hj⟩ => exact ⟨Classical.choice hι, fun y hy => False.elim (hj hy y.prop)⟩
-    | ⟨some i, hj⟩ => exact ⟨i, fun y hy => by rw [← hU_eq i]; exact hj hy⟩
-  · have hYa : IsEmpty ↥Y := ⟨fun y => let ⟨i, _⟩ := Set.mem_iUnion.mp (hu.2.symm ▸ Set.mem_univ y); hι ⟨i⟩⟩
-    refine ⟨PEmpty, fun k => k.elim, ⟨fun k => k.elim, ?_⟩, fun k => k.elim, fun y => (hYa.false y).elim⟩
-    ext y
-    exact (hYa.false y).elim
+    choose U hU_open hU_eq using fun i => isOpen_induced_iff.mp (hu.1 i)
+
+    let U_ext : Option ι → Set X := fun
+      | none => Yᶜ
+      | some i => U i
+
+    have h_cov : IsOpenCover U_ext := by
+      refine ⟨fun | none => isOpen_compl_iff.mpr hY | some i => hU_open i, ?_⟩
+      ext x; simp only [U_ext, Set.mem_iUnion, Set.mem_univ, iff_true]
+      by_cases hx : x ∈ Y
+      · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp (hu.2.symm ▸ Set.mem_univ (⟨x, hx⟩ : Y))
+        exact ⟨some i, by rwa [← hU_eq i] at hi⟩
+      · exact ⟨none, hx⟩
+
+    by_cases hι : Nonempty ι
+    · rcases hdim (Option ι) U_ext h_cov with ⟨κ, v, hv_cov, hv_ref, hv_ord⟩
+      refine ⟨κ, fun k => Subtype.val ⁻¹' v k,
+        ⟨fun k => (hv_cov.1 k).preimage continuous_subtype_val,
+        by rw [← Set.preimage_iUnion, hv_cov.2, Set.preimage_univ]⟩, ?_, ?_⟩
+      · intro k
+        rcases hv_ref k with ⟨_ | i, hj⟩
+        · exact ⟨Classical.choice hι, fun y hy => (hj hy y.prop).elim⟩
+        · exact ⟨i, fun y hy => hU_eq i ▸ hj hy⟩
+      · intro f hf
+        rw [← Set.preimage_iInter, hv_ord f hf, Set.preimage_empty]
+
+    · have hYa : IsEmpty ↥Y := ⟨fun y => by
+        obtain ⟨i, hi⟩ := Set.mem_iUnion.mp (hu.2.symm ▸ Set.mem_univ y)
+        exact hι ⟨i⟩⟩
+
+      refine ⟨(PEmpty : Type v), (fun _ => ∅), ⟨?_, ?_⟩, ?_, ?_⟩
+      · intro i; exact i.elim
+      · ext y; exact (hYa.false y).elim
+      · intro i; exact i.elim
+      · intro f; exact (f 0).elim
