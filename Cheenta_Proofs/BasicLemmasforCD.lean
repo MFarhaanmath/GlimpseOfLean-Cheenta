@@ -97,6 +97,7 @@ lemma trivialCover_order :
   have h_false : (0 : Fin 2) ≠ (1 : Fin 2) := by decide
   exact (h_false h_inj).elim
 
+omit [TopologicalSpace X] in
 lemma restrict_cover_union
    {ι : Type*}
    (u : ι → Set X)
