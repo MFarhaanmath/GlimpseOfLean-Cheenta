@@ -48,12 +48,12 @@ def IsOpenCover {ι : Type*}
  (⋃ i, u i) = univ
 
 def Refines {ι : Type*}
- {κ : Type*} (v : κ → Set X)
- (u : ι → Set X) : Prop :=
- ∀ k : κ, ∃ i : ι, v k ⊆ u i
+  {κ : Type*} (v : κ → Set X)
+  (u : ι → Set X) : Prop :=
+    ∀ k : κ, ∃ i : ι, v k ⊆ u i
 
 def trivialCover : Unit → Set X :=
- fun _ => Set.univ
+  fun _ => Set.univ
 
 lemma trivialCover_open :
    IsOpenCover (trivialCover : Unit → Set X) := by
@@ -63,15 +63,15 @@ lemma trivialCover_open :
  · ext x
    simp [trivialCover]
 
-omit [TopologicalSpace X]
+omit [TopologicalSpace X] in
 lemma refines_refl
- {ι : Type*}
- (u : ι → Set X) :
- Refines u u := by
- intro i
- exact ⟨i, subset_rfl⟩
+  {ι : Type*}
+  (u : ι → Set X) :
+  Refines u u := by
+    intro i
+    exact ⟨i, subset_rfl⟩
 
-omit [TopologicalSpace X]
+omit [TopologicalSpace X] in
 lemma refines_trans
    {ι : Type*}
    {κ : Type*}
@@ -88,7 +88,7 @@ lemma refines_trans
  refine ⟨i, ?_⟩
  exact Set.Subset.trans hkv hui
 
-omit [TopologicalSpace X]
+omit [TopologicalSpace X] in
 lemma trivialCover_order :
     HasOrderLEBETTER (trivialCover : Unit → Set X) 0 := by
   intro f hf
