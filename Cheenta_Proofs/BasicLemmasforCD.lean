@@ -4,6 +4,7 @@ import Mathlib.Data.Fintype.Card
 import Mathlib.Topology.Connected.Clopen
 import Mathlib.Topology.Order.IntermediateValue
 import Mathlib.Data.Real.Basic
+import Mathlib.Topology.Sets.OpenCover
 
 open Set
 
@@ -42,10 +43,10 @@ def HasOrderEq_2 {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
     Function.Injective g ∧
     (⋂ i, v (g i)) ≠ ∅
 
-def IsOpenCover {ι : Type*}
+/-def IsOpenCover {ι : Type*}
  (u : ι → Set X) : Prop :=
  (∀ i, IsOpen (u i)) ∧
- (⋃ i, u i) = univ
+ (⋃ i, u i) = univ-/
 
 def Refines {ι : Type*}
  {κ : Type*} (v : κ → Set X)
@@ -56,12 +57,12 @@ def trivialCover : Unit → Set X :=
  fun _ => Set.univ
 
 lemma trivialCover_open :
-   IsOpenCover (trivialCover : Unit → Set X) := by
+   TopologicalSpace.IsOpenCover (fun _ => ⟨Set.univ, isOpen_univ⟩ : Unit → TopologicalSpace.Opens X) := by
  refine ⟨?_, ?_⟩
  · intro i
-   simp [trivialCover]
+   simp
  · ext x
-   simp [trivialCover]
+   simp
 
 omit [TopologicalSpace X]
 lemma refines_refl
