@@ -92,16 +92,9 @@ omit [TopologicalSpace X]
 lemma trivialCover_order :
     HasOrderLEBETTER (trivialCover : Unit → Set X) 0 := by
   intro f hf
-  -- Explicitly cast 0 and 1 to Fin 2
   have h_eq : f (0 : Fin 2) = f (1 : Fin 2) := Subsingleton.elim _ _
-
-  -- Apply the injectivity hypothesis
   have h_inj : (0 : Fin 2) = (1 : Fin 2) := hf h_eq
-
-  -- Prove that 0 ≠ 1 in Fin 2 using decide
   have h_false : (0 : Fin 2) ≠ (1 : Fin 2) := by decide
-
-  -- The contradiction (h_false h_inj) produces an empty type, which closes the goal
   exact (h_false h_inj).elim
 
 lemma restrict_cover_union
