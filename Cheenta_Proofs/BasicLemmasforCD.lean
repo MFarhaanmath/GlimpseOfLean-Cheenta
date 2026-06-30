@@ -18,40 +18,18 @@ def multiplicity
   ∀ (s : Set ι), (∀ i ∈ s, x ∈ u i) →
     (∀ (f : ℕ → ι), (∀ n, f n ∈ s) → ¬ Function.Injective f)
 
-/-def HasOrderLE
-   {κ : Type*}
-   (v : κ → Set X) (n : ℕ) : Prop :=
- ∀ (s : Set κ),
-   (∀ (f : ℕ → κ), Function.Injective f → (∀ i < n + 2, f i ∈ s)) →
-   (⋂ k ∈ s, v k) = ∅
-
-def HasOrderLEBETTER {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
+def HasOrderLENiranjan {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
   ∀ (f : Fin (n + 2) → κ), Function.Injective f → (⋂ i, v (f i)) = ∅
 
-def HasOrderEq
-    {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
-  HasOrderLE v n ∧
-  ∃ (g : Fin (n + 1) → κ),
-    Function.Injective g ∧
-    (⋂ i, v (g i)) ≠ ∅
-
-def HasOrderEq_2 {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
-(∀ (s : Set κ),
-  (∀ (f : ℕ → κ), Function.Injective f → (∀ i < n + 2, f i ∈ s)) →
-  (⋂ k ∈ s, v k) = ∅) ∧
-  ∃ (g : Fin (n + 1) → κ),
-    Function.Injective g ∧
-    (⋂ i, v (g i)) ≠ ∅
+ def HasOrderLEShravas {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
+  ∀ s : Finset κ,
+    s.card = n + 2 →
+    (⋂ k ∈ (↑s : Set κ), v k) = ∅
 
 def IsOpenCover {ι : Type*}
  (u : ι → Set X) : Prop :=
  (∀ i, IsOpen (u i)) ∧
- (⋃ i, u i) = univ hi hi hi-/
-
- def HasOrderLE_i_shravas_think_most_munkres_accurate {κ : Type*} (v : κ → Set X) (n : ℕ) : Prop :=
-  ∀ s : Finset κ,
-    s.card = n + 2 →
-    (⋂ k ∈ (↑s : Set κ), v k) = ∅
+ (⋃ i, u i) = univ
 
 def Refines {ι : Type*}
   {κ : Type*} (v : κ → Set X)
@@ -92,17 +70,8 @@ lemma refines_trans
  exact Set.Subset.trans hkv hui
 
 omit [TopologicalSpace X] in
-
-/-lemma trivialCover_order :
-    HasOrderLEBETTER (trivialCover : Unit → Set X) 0 := by
-  intro f hf
-  have h_eq : f (0 : Fin 2) = f (1 : Fin 2) := Subsingleton.elim _ _
-  have h_inj : (0 : Fin 2) = (1 : Fin 2) := hf h_eq
-  have h_false : (0 : Fin 2) ≠ (1 : Fin 2) := by decide
-  exact (h_false h_inj).elim-/
-
 lemma trivialCover_order :
-    HasOrderLE_i_shravas_think_most_munkres_accurate (trivialCover : Unit → Set X) 0 := by
+    HasOrderLEShravas (trivialCover : Unit → Set X) 0 := by
   classical
   intro s hs
   have hcard : s.card ≤ 1 := by
